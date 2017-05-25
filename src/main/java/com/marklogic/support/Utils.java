@@ -1,5 +1,6 @@
 package com.marklogic.support;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +19,14 @@ public class Utils {
 
     protected static Reader getFileReader(String name) {
         try {
-            return new FileReader(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()));
+            File f = new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile());
+            FileReader fr = new FileReader(f);
+            /*fr. URL url = FileSizeBench.class
+                    .getResource("FileSizeBench.class");
+            stream = url.openStream();
+            return stream.available(); */
+            LOG.info(String.format("File name: %s | File length: %s", f.getName(), FileUtils.byteCountToDisplaySize(f.length())));
+            return fr;
         } catch (FileNotFoundException e) {
             LOG.error(String.format("Unable to open file %s", name), e);
         }

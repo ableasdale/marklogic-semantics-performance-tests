@@ -5,11 +5,6 @@ import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
-import org.rdfhdt.hdt.exceptions.NotFoundException;
-import org.rdfhdt.hdt.hdt.HDT;
-import org.rdfhdt.hdt.hdt.HDTManager;
-import org.rdfhdt.hdt.triples.IteratorTripleString;
-import org.rdfhdt.hdt.triples.TripleString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +38,26 @@ public class Test {
 //                //LOG.info(""+ts);
 //            }
 
-            conn.add(Utils.getFileReader("country-records.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("country-records.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("countries.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("IVOAT.ttl"), "", RDFFormat.TURTLE);
+            // BAD conn.add(Utils.getFileReader("fulldump.ttl"), "", RDFFormat.TURTLE);
+            // BAD conn.add(Utils.getFileReader("images_en.ttl"), "", RDFFormat.TURTLE);
+            // conn.add(Utils.getFileReader("void.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("void.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("sec.n3"), "", RDFFormat.N3);
+            // BAD conn.add(Utils.getFileReader("625KGeologyMap_Dyke.nt"), "", RDFFormat.NTRIPLES);
+            // GOOD conn.add(Utils.getFileReader("history.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("units.ttl"), "", RDFFormat.TURTLE);
+            conn.add(Utils.getFileReader("names.ttl"), "", RDFFormat.TURTLE);
+
+            // RDFXML
+            // GOOD conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(Utils.getFileReader("rdfxml/continents.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(Utils.getFileReader("rdfxml/capitals.rdf"), "", RDFFormat.RDFXML);
+            // BAD conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
+
         } catch (IOException e) {
             LOG.error("File I/O Exception encountered: ", e);
         } catch (RDFParseException e) {
