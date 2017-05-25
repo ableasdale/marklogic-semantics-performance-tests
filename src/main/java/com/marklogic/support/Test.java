@@ -38,18 +38,25 @@ public class Test {
 //                //LOG.info(""+ts);
 //            }
 
-            // GOOD conn.add(Utils.getFileReader("country-records.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("countries.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("IVOAT.ttl"), "", RDFFormat.TURTLE);
+
             // BAD conn.add(Utils.getFileReader("fulldump.ttl"), "", RDFFormat.TURTLE);
             // BAD conn.add(Utils.getFileReader("images_en.ttl"), "", RDFFormat.TURTLE);
-            // conn.add(Utils.getFileReader("void.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("void.ttl"), "", RDFFormat.TURTLE);
+
+            // N3
             // GOOD conn.add(Utils.getFileReader("sec.n3"), "", RDFFormat.N3);
+
             // BAD conn.add(Utils.getFileReader("625KGeologyMap_Dyke.nt"), "", RDFFormat.NTRIPLES);
-            // GOOD conn.add(Utils.getFileReader("history.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("units.ttl"), "", RDFFormat.TURTLE);
-            conn.add(Utils.getFileReader("names.ttl"), "", RDFFormat.TURTLE);
+
+            // TURTLE
+            // GOOD conn.add(Utils.getFileReader("turtle/void.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("turtle/IVOAT.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("turtle/country-records.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("turtle/countries.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
+            // GOOD - 984MB - takes ~10 minutes conn.add(Utils.getFileReader("turtle/names.ttl"), "", RDFFormat.TURTLE);
+            // BAD - TOOBIG conn.add(Utils.getFileReader("turtle/features.ttl"), "", RDFFormat.TURTLE);
+
 
             // RDFXML
             // GOOD conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
