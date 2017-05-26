@@ -44,6 +44,14 @@ public class Test {
 
             // N3
             // GOOD conn.add(Utils.getFileReader("sec.n3"), "", RDFFormat.N3);
+            // BAD - TOOBIG conn.add(Utils.getFileReader("chemogenomics.n3"), "", RDFFormat.N3);
+
+
+            // NQUADS
+            // GOOD conn.add(Utils.getFileReader("sider-indications_raw.nq"), "", RDFFormat.NQUADS);
+            // GOOD conn.add(Utils.getFileReader("sider-adverse_effects_raw.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("sider-label_mapping.nq"), "", RDFFormat.NQUADS);
+
 
             // BAD conn.add(Utils.getFileReader("625KGeologyMap_Dyke.nt"), "", RDFFormat.NTRIPLES);
 
@@ -64,6 +72,7 @@ public class Test {
             // GOOD conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
             // GOOD conn.add(Utils.getFileReader("rdfxml/capitals.rdf"), "", RDFFormat.RDFXML);
             // BAD conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
+
 
         } catch (IOException e) {
             LOG.error("File I/O Exception encountered: ", e);
