@@ -5,21 +5,55 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 apply plugin: 'java'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
     compile group: 'com.marklogic', name: 'java-client-api', version: '4.0.1'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'com.marklogic', name: 'marklogic-sesame', version: '1.0.2.1'
     compile group: 'org.rdfhdt', name: 'hdt-java-core', version: '1.1'
 }
 
+junitPlatform {
+
+    //logManager 'org.apache.logging.log4j.jul.LogManager'
+    reportsDir "build/test-results/junit-platform"
+    // platformVersion '1.0.0-M4'
+    filters {
+        engines {
+            include 'junit-jupiter', 'junit-vintage'
+            // exclude 'custom-engine'
+        }
+        tags {
+            // include 'fast'
+            exclude 'slow'
+        }
+        // includeClassNamePattern '.*Test'
+    }
+    // enableStandardTestTask true
+    // reportsDir file('build/test-results/junit-platform') // this is the default
+
+}
+
+
+/*
 tasks.withType(Test) {
     testLogging {
         // set options for log level LIFECYCLE
@@ -46,4 +80,4 @@ tasks.withType(Test) {
             }
         }
     }
-}
+} */
