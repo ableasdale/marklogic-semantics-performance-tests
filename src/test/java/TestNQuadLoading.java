@@ -25,6 +25,7 @@ public class TestNQuadLoading {
     @Test
     public void testHelloEmpty()
     {
+        LOG.info("doing some testing");
         assertEquals(3, 1+4);
     }
 
