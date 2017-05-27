@@ -34,7 +34,7 @@ dependencies {
 
 junitPlatform {
 
-    details 'tree'
+    details 'tree' //'verbose'
 
     filters {
         engines {
