@@ -20,7 +20,7 @@ public class Test {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        //MarkLogicRepositoryConnection conn = Repository.getMarkLogicRepositoryConnection();
+        //MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
         //LOG.info("active"+conn.isActive());
 

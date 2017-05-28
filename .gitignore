@@ -1,4 +1,7 @@
 .DS_Store
+*.ipr
+*.iws
+*.iml
 .gradle/
 .idea/
 build/

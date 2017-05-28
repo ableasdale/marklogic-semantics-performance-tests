@@ -17,7 +17,7 @@ public class Utils {
 
     private static Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    protected static Reader getFileReader(String name) {
+    public static Reader getFileReader(String name) {
         try {
             File f = new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile());
             FileReader fr = new FileReader(f);

@@ -11,43 +11,43 @@ import java.lang.invoke.MethodHandles;
 /**
  * Created by ableasdale on 24/05/2017.
  */
-public class Repository {
+public class MarkLogicSesameRepositoryProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private MarkLogicRepository markLogicSesameApiConnection;
 
-    private Repository() {
-        LOG.info("Creating MarkLogic Repository connection");
+    private MarkLogicSesameRepositoryProvider() {
+        LOG.info("Creating MarkLogic MarkLogicSesameRepositoryProvider");
         markLogicSesameApiConnection = new MarkLogicRepository(Configuration.HOST, Configuration.PORT, Configuration.USERNAME, Configuration.PASSWORD, Configuration.AUTH);
         try {
             markLogicSesameApiConnection.initialize();
-            LOG.info("Repository should now be set up");
+            LOG.info("MarkLogicSesameRepositoryProvider should now be set up");
         } catch (RepositoryException e) {
             LOG.error("Unable to connect to Sesame API", e);
         }
     }
 
     private static class LazyHolder {
-        static final Repository INSTANCE = new Repository();
+        static final MarkLogicSesameRepositoryProvider INSTANCE = new MarkLogicSesameRepositoryProvider();
     }
 
 
-    private static Repository getInstance() {
+    private static MarkLogicSesameRepositoryProvider getInstance() {
         return LazyHolder.INSTANCE;
     }
 
     private static MarkLogicRepository getMarkLogicRepository() {
-        LOG.info("Getting Sesame Repository");
-        return Repository.getInstance().markLogicSesameApiConnection;
+        LOG.debug("Getting Sesame MarkLogicSesameRepositoryProvider");
+        return MarkLogicSesameRepositoryProvider.getInstance().markLogicSesameApiConnection;
     }
 
     public static MarkLogicRepositoryConnection getMarkLogicRepositoryConnection() {
-        LOG.info("Getting Sesame Connection");
+        LOG.info("Getting MarkLogic Sesame Repository Connection");
         try {
-            Repository.getInstance().getMarkLogicRepository().getConnection();
+            return MarkLogicSesameRepositoryProvider.getInstance().getMarkLogicRepository().getConnection();
         } catch (RepositoryException e) {
-            LOG.error("Unable to create Sesame API Repository connection", e);
+            LOG.error("Unable to create Sesame API MarkLogicSesameRepositoryProvider connection", e);
         }
         return null;
     }

@@ -1,10 +1,16 @@
 package com.marklogic.support.extensions;
 
+import com.marklogic.semantics.sesame.MarkLogicRepository;
+import com.marklogic.support.Configuration;
+import com.marklogic.support.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.extension.*;
+import org.openrdf.repository.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by ableasdale on 28/05/2017.
@@ -13,13 +19,11 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public MarkLogicSesameExtension() {
-        LOG.info("MarkLogic Sesame Extension here..");
-    }
 
     @Override
     public void beforeAll(ContainerExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC Sesame: BEFORE ALL :)");
+        LOG.info("MARKLOGIC Sesame: BEFORE ALL :)" +  MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection().isActive());
+        assertTrue(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection().isOpen());
     }
 
     @Override
