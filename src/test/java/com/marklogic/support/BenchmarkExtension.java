@@ -1,14 +1,8 @@
 package com.marklogic.support;
 
 
-import org.junit.jupiter.api.extension.AfterAllCallback;
-import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
-import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
-import org.junit.jupiter.api.extension.ContainerExtensionContext;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
-import org.junit.jupiter.api.extension.TestExtensionContext;
 
 import static java.lang.System.currentTimeMillis;
 import static java.util.Collections.singletonMap;
@@ -20,6 +14,27 @@ class BenchmarkExtension
     private static final Namespace NAMESPACE = Namespace.create("com", "marklogic", "support", "BenchmarkExtension");
 
     // EXTENSION POINTS
+
+    private static boolean shouldBeBenchmarked(ExtensionContext context) {
+        return context.getElement()
+                .map(el -> isAnnotated(el, Benchmark.class))
+                .orElse(false);
+    }
+
+    private static void storeNowAsLaunchTime(ExtensionContext context, LaunchTimeKey key) {
+        context.getStore(NAMESPACE).put(key, currentTimeMillis());
+    }
+
+    private static long loadLaunchTime(ExtensionContext context, LaunchTimeKey key) {
+        return context.getStore(NAMESPACE).get(key, long.class);
+    }
+
+    private static void report(String unit, ExtensionContext context, long elapsedTime) {
+        String message = String.format("%s '%s' took %d ms.", unit, context.getDisplayName(), elapsedTime);
+        context.publishReportEntry(singletonMap("Benchmark", message));
+    }
+
+    // HELPER
 
     @Override
     public void beforeAll(ContainerExtensionContext context) {
@@ -55,27 +70,6 @@ class BenchmarkExtension
         long launchTime = loadLaunchTime(context, LaunchTimeKey.CLASS);
         long elapsedTime = currentTimeMillis() - launchTime;
         report("Test container", context, elapsedTime);
-    }
-
-    // HELPER
-
-    private static boolean shouldBeBenchmarked(ExtensionContext context) {
-        return context.getElement()
-                .map(el -> isAnnotated(el, Benchmark.class))
-                .orElse(false);
-    }
-
-    private static void storeNowAsLaunchTime(ExtensionContext context, LaunchTimeKey key) {
-        context.getStore(NAMESPACE).put(key, currentTimeMillis());
-    }
-
-    private static long loadLaunchTime(ExtensionContext context, LaunchTimeKey key) {
-        return context.getStore(NAMESPACE).get(key, long.class);
-    }
-
-    private static void report(String unit, ExtensionContext context, long elapsedTime) {
-        String message = String.format("%s '%s' took %d ms.", unit, context.getDisplayName(), elapsedTime);
-        context.publishReportEntry(singletonMap("Benchmark", message));
     }
 
     private enum LaunchTimeKey {

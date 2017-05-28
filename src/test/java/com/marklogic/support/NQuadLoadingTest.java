@@ -25,17 +25,15 @@ public class NQuadLoadingTest {
     }*/
 
     @Test
-    public void testHelloEmpty()
-    {
+    public void testHelloEmpty() {
         LOG.info("doing some testing");
-        assertEquals(5, 1+4);
+        assertEquals(5, 1 + 4);
     }
 
     @Test
-    public void testHelloWorld()
-    {
+    public void testHelloWorld() {
 
-        assertEquals(2, 1+1);
+        assertEquals(2, 1 + 1);
 
     }
 }

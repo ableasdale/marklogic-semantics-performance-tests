@@ -2,7 +2,6 @@ package com.marklogic.support;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,23 +10,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @MarkLogic
 class DisplayNameTest {
 
-	@Test
-	@DisplayName("Custom test name containing spaces")
-	void testWithDisplayNameContainingSpaces() {
-		assertEquals(2, (1 + 1), "1 + 1 should equal 2");
-	}
-
-	@Test
-	@DisplayName("╯°□°）╯")
-	void testWithDisplayNameContainingSpecialCharacters() {
+    @Test
+    @DisplayName("Custom test name containing spaces")
+    void testWithDisplayNameContainingSpaces() {
         assertEquals(2, (1 + 1), "1 + 1 should equal 2");
-	}
+    }
 
-	@Test
-	@DisplayName("😱")
-	void testWithDisplayNameContainingEmoji() {
+    @Test
+    @DisplayName("╯°□°）╯")
+    void testWithDisplayNameContainingSpecialCharacters() {
+        assertEquals(2, (1 + 1), "1 + 1 should equal 2");
+    }
+
+    @Test
+    @DisplayName("😱")
+    void testWithDisplayNameContainingEmoji() {
         assertEquals(3, (1 + 2), "1 + 1 should equal 2");
-	}
+    }
 
 }
 

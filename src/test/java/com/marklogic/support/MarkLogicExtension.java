@@ -13,7 +13,7 @@ public class MarkLogicExtension implements Extension {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public MarkLogicExtension(){
+    public MarkLogicExtension() {
         LOG.info("MarkLogic Extension here..");
     }
 }

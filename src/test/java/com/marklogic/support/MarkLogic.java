@@ -6,14 +6,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.ElementType.*;
 
 /**
  * Created by ableasdale on 28/05/2017.
  */
-@Target({ TYPE, METHOD, ANNOTATION_TYPE })
+@Target({TYPE, METHOD, ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(MarkLogicExtension.class)
-public @interface MarkLogic { }
+public @interface MarkLogic {
+}

@@ -1,9 +1,7 @@
 package com.marklogic.support;
 
-import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +23,11 @@ public class StandardTests {
         LOG.info("before all");
     }
 
+    @AfterAll
+    static void tearDownAll() {
+        LOG.info("tear down all");
+    }
+
     @BeforeEach
     void init() {
         LOG.info("before each");
@@ -35,17 +38,12 @@ public class StandardTests {
         LOG.info("tear down each");
     }
 
-    @AfterAll
-    static void tearDownAll() {
-        LOG.info("tear down all");
-    }
-
     @DisplayName("The skipped test")
     @Test
-   // @Disabled("for demonstration purposes")
+        // @Disabled("for demonstration purposes")
     void skippedTest() {
         LOG.info("this is supposed to be a test");
-        assertEquals(true,true);
+        assertEquals(true, true);
         // not executed
     }
 
