@@ -42,7 +42,7 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
 
     @Override
     public void afterTestExecution(TestExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC Sesame: AFTER TEST :)");
+        LOG.info("MARKLOGIC Sesame: AFTER TEST - clearing all triples");
         deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
     }
 
