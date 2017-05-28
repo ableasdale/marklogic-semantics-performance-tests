@@ -9,6 +9,7 @@ import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,23 @@ class LoadRDFXMLTest {
 
         assertTimeoutPreemptively(ofMillis(2000), () -> {
             conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
+        });
+
+        // TODO - also assert the total number of docs
+    }
+
+
+    @Benchmark
+    @Test
+    @Disabled("file can't be parsed right now - need to figure out why...")
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 187.1MB RDF/XML file (geospecies.rdf)")
+    public void testLoadingLargeRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(50000), () -> {
+            conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
         });
 
         // TODO - also assert the total number of docs

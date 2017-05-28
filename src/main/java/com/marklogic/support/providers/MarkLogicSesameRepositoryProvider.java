@@ -44,7 +44,7 @@ public class MarkLogicSesameRepositoryProvider {
     }
 
     public static MarkLogicRepositoryConnection getMarkLogicRepositoryConnection() {
-        LOG.info("Getting MarkLogic Sesame Repository Connection");
+        LOG.debug("Getting MarkLogic Sesame Repository Connection");
         try {
             return MarkLogicSesameRepositoryProvider.getInstance().getMarkLogicRepository().getConnection();
         } catch (RepositoryException e) {
