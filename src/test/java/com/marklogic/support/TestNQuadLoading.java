@@ -1,3 +1,5 @@
+package com.marklogic.support;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +28,7 @@ public class TestNQuadLoading {
     public void testHelloEmpty()
     {
         LOG.info("doing some testing");
-        assertEquals(3, 1+4);
+        assertEquals(5, 1+4);
     }
 
     @Test
@@ -43,7 +45,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-class FirstJUnit5Tests {
+class com.marklogic.support.FirstJUnit5Tests {
 
     @Test
     void myFirstTest() {

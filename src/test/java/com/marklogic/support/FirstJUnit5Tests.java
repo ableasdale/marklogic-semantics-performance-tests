@@ -1,4 +1,4 @@
-/**
+package com.marklogic.support; /**
  * Created by ableasdale on 26/05/2017.
  */
 import static java.time.Duration.ofMillis;
@@ -35,6 +35,6 @@ class FirstJUnit5Tests {
             Thread.sleep(1); // change to 100 to fail test
         });
     }
-    
+
 
 }

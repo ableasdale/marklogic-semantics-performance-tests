@@ -1,9 +1,12 @@
+package com.marklogic.support;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("A very very very special test case")
+//@UsesDatabase
 class DisplayNameTest {
 
 	@Test
@@ -21,8 +24,8 @@ class DisplayNameTest {
 	@Test
 	@DisplayName("😱")
 	void testWithDisplayNameContainingEmoji() {
-        assertEquals(2, (1 + 2), "1 + 1 should equal 2");
+        assertEquals(3, (1 + 2), "1 + 1 should equal 2");
 	}
 
 }
-// end::user_guide[]
+
