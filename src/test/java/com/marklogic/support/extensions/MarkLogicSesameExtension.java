@@ -1,7 +1,12 @@
 package com.marklogic.support.extensions;
 
+import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
+import com.marklogic.semantics.sesame.query.MarkLogicUpdateQuery;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.extension.*;
+import org.openrdf.query.MalformedQueryException;
+import org.openrdf.query.UpdateExecutionException;
+import org.openrdf.repository.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +21,13 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    private static void deleteAllTriples(MarkLogicRepositoryConnection conn) {
+        try {
+            conn.prepareUpdate("DROP ALL").execute();
+        } catch (RepositoryException | UpdateExecutionException | MalformedQueryException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void beforeAll(ContainerExtensionContext context) throws Exception {
@@ -31,6 +43,7 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
     @Override
     public void afterTestExecution(TestExtensionContext context) throws Exception {
         LOG.info("MARKLOGIC Sesame: AFTER TEST :)");
+        deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
     }
 
     @Override

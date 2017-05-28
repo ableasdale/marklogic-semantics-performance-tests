@@ -32,19 +32,31 @@ public class LoadTurtleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-
     @Benchmark
     @Test
-    @RepeatedTest(3)
+    @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 779K Turtle file (units.ttl)")
     public void testLoadingSmallTurtleFile() throws RepositoryException, IOException, RDFParseException {
-
-
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
         assertTimeoutPreemptively(ofMillis(2000), () -> {
             conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
+        });
+
+        // TODO - also assert the total number of docs
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 51MB Turtle file (history.ttl)")
+    public void testLoadingLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(50000), () -> {
+            conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
         });
 
         // TODO - also assert the total number of docs
