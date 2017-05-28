@@ -27,4 +27,5 @@ python -m SimpleHTTPServer 9992
 
 
 TODO:
+https://datahub.io/dataset/telegraphis (XML/RDF) - license not clear?
 https://datahub.io/dataset/chem2bio2rdf (TODO - check - license is not clear)
