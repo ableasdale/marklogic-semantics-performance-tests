@@ -3,6 +3,7 @@ package com.marklogic.support.sesame;
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
+import com.marklogic.support.annotations.MarkLogic;
 import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
@@ -18,44 +19,44 @@ import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
- * Created by ableasdale on 28/05/2017.
+ * Created by ableasdale on 26/05/2017.
  */
 
 @MarkLogicSesame
-public class LoadTurtleTest {
+public class LoadNQuadTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 
     @Benchmark
     @Test
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 779K Turtle file (units.ttl)")
-    public void testLoadingSmallTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    @DisplayName("Using the MarkLogic Sesame API to load a 41.8MB N-Quads file (sider-indications_raw.nq)")
+    public void testLoadingLargeNQuadsFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(2000), () -> {
-            conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
+        assertTimeoutPreemptively(ofMillis(30000), () -> {
+            conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
         });
 
         // TODO - also assert the total number of docs
     }
 
-    @Benchmark
-    @Test
-    @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 51MB Turtle file (history.ttl)")
-    public void testLoadingLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    //@Test
+    public void testHelloEmpty() {
+        LOG.info("doing some testing");
+        assertEquals(5, 1 + 4);
+    }
 
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+    //@Test
+    public void testHelloWorld() {
 
-        assertTimeoutPreemptively(ofMillis(50000), () -> {
-            conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
-        });
+        assertEquals(2, 1 + 1);
 
-        // TODO - also assert the total number of docs
     }
 }

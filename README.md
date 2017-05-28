@@ -19,7 +19,12 @@ python -m SimpleHTTPServer 9992
 
 ### Test Sources Used:
 
-1. The **GNIS RDF Data Dump**
+1. The **GNIS RDF Data Dump** (RDF/Turtle)
 [https://datahub.io/dataset/geographic-names-information-system-gnis](https://datahub.io/dataset/geographic-names-information-system-gnis)
 
-2. https://datahub.io/dataset/chem2bio2rdf (TODO - check - license is not clear)
+2. **Bio2RDF::Sider** (n-quads)
+[https://datahub.io/dataset/bio2rdf-sider](https://datahub.io/dataset/bio2rdf-sider) 
+
+
+TODO:
+https://datahub.io/dataset/chem2bio2rdf (TODO - check - license is not clear)
