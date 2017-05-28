@@ -1,19 +1,19 @@
 package com.marklogic.support;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by ableasdale on 26/05/2017.
  */
-public class TestNQuadLoading {
+@Benchmark
+@MarkLogic
+public class NQuadLoadingTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -39,18 +39,3 @@ public class TestNQuadLoading {
 
     }
 }
-
-/*
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
-class com.marklogic.support.FirstJUnit5Tests {
-
-    @Test
-    void myFirstTest() {
-        assertEquals(2, 1 + 1);
-    }
-
-}
- */
