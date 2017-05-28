@@ -48,7 +48,7 @@ class LoadRDFXMLTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(60000), () -> {
+        assertTimeoutPreemptively(ofMillis(40000), () -> {
             conn.add(Utils.getFileReader("rdfxml/peel.rdf"), "", RDFFormat.RDFXML);
         });
 

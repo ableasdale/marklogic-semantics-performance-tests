@@ -35,3 +35,11 @@ https://datahub.io/dataset/dbtune-john-peel-sessions - (TODO - check - license i
 TODO:
 https://datahub.io/dataset/ckan
 https://www.govtrack.us/data/misc/sec.n3.gz
+https://datahub.io/dataset/inertia-energy-consumption-example-linked-data
+http://www.inertia-project.eu/inertia/files/document/ontologies/event-dump.n3
+https://datahub.io/dataset/government-web-integration-for-linked-data
+http://govwild.hpi-web.de/downloads/govwild-rdf-2012-01-30.zip
+
+NTriples TODO
+https://datahub.io/dataset/ispra-lod-ron (ron.nt)
+https://datahub.io/dataset/ispra-lod-rmn
