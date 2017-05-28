@@ -27,8 +27,10 @@ python -m SimpleHTTPServer 9992
 
 
 TODO:
+http://usgs-stko.geog.ucsb.edu/resource/GNIS-LD.zip
 https://datahub.io/dataset/telegraphis (XML/RDF) - license not clear?
 https://datahub.io/dataset/chem2bio2rdf (TODO - check - license is not clear)
+https://datahub.io/dataset/dbtune-john-peel-sessions - (TODO - check - license is not clear)
 
 TODO:
 https://datahub.io/dataset/ckan

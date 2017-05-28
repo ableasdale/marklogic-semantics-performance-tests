@@ -40,6 +40,21 @@ class LoadRDFXMLTest {
         // TODO - also assert the total number of docs
     }
 
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 21.8MB RDF/XML file (peel.rdf)")
+    public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(60000), () -> {
+            conn.add(Utils.getFileReader("rdfxml/peel.rdf"), "", RDFFormat.RDFXML);
+        });
+
+        // TODO - also assert the total number of docs
+    }
+
 
     @Benchmark
     @Test
