@@ -1,7 +1,7 @@
 package com.marklogic.support.sesame;
 
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
-import com.marklogic.support.MarkLogicSesameRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 
@@ -43,7 +43,7 @@ public class LoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(1500), () -> {
+        assertTimeoutPreemptively(ofMillis(2000), () -> {
             conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
         });
 

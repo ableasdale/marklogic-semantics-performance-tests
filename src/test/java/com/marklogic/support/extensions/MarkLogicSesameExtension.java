@@ -1,10 +1,7 @@
 package com.marklogic.support.extensions;
 
-import com.marklogic.semantics.sesame.MarkLogicRepository;
-import com.marklogic.support.Configuration;
-import com.marklogic.support.MarkLogicSesameRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.extension.*;
-import org.openrdf.repository.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

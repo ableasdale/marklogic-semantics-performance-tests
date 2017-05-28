@@ -1,7 +1,8 @@
-package com.marklogic.support;
+package com.marklogic.support.providers;
 
 import com.marklogic.semantics.sesame.MarkLogicRepository;
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
+import com.marklogic.support.Configuration;
 import org.openrdf.repository.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
