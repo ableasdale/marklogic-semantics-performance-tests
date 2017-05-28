@@ -1,4 +1,4 @@
-package com.marklogic.support;
+package com.marklogic.support.extensions;
 
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
@@ -9,31 +9,31 @@ import java.lang.invoke.MethodHandles;
 /**
  * Created by ableasdale on 28/05/2017.
  */
-public class MarkLogicExtension implements BeforeAllCallback, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback, Extension {
+public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestExecutionCallback, AfterTestExecutionCallback, AfterAllCallback, Extension {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public MarkLogicExtension() {
-        LOG.info("MarkLogic Extension here..");
+    public MarkLogicSesameExtension() {
+        LOG.info("MarkLogic Sesame Extension here..");
     }
 
     @Override
     public void beforeAll(ContainerExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: BEFORE ALL :)");
+        LOG.info("MARKLOGIC Sesame: BEFORE ALL :)");
     }
 
     @Override
     public void afterAll(ContainerExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: AFTER ALL :)");
+        LOG.info("MARKLOGIC Sesame: AFTER ALL :)");
     }
 
     @Override
     public void afterTestExecution(TestExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: AFTER TEST :)");
+        LOG.info("MARKLOGIC Sesame: AFTER TEST :)");
     }
 
     @Override
     public void beforeTestExecution(TestExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: BEFORE TEST :)");
+        LOG.info("MARKLOGIC Sesame: BEFORE TEST :)");
     }
 }

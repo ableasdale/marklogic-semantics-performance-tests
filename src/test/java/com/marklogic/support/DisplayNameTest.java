@@ -1,5 +1,7 @@
 package com.marklogic.support;
 
+import com.marklogic.support.annotations.Benchmark;
+import com.marklogic.support.annotations.MarkLogic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

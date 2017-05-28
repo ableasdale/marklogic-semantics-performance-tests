@@ -2,6 +2,8 @@ package com.marklogic.support; /**
  * Created by ableasdale on 26/05/2017.
  */
 
+import com.marklogic.support.annotations.Benchmark;
+import com.marklogic.support.annotations.MarkLogic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

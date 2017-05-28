@@ -1,5 +1,6 @@
-package com.marklogic.support;
+package com.marklogic.support.annotations;
 
+import com.marklogic.support.extensions.BenchmarkExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.Retention;

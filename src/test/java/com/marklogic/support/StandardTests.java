@@ -1,5 +1,7 @@
 package com.marklogic.support;
 
+import com.marklogic.support.annotations.Benchmark;
+import com.marklogic.support.annotations.MarkLogic;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
