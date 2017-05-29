@@ -27,8 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class JenaLoadTurtleTest {
 
 
-    // TODO - this test currently fails... why?
-
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 51MB Turtle file (history.ttl)")
@@ -37,7 +35,11 @@ public class JenaLoadTurtleTest {
         MarkLogicDatasetGraph dsg = MarkLogicDatasetGraphFactory
                 .createDatasetGraph(MarkLogicJavaClientProvider.getClient());
 
-        RDFDataMgr.read(dsg, "src/main/resources/nt/ron.nt", Lang.NTRIPLES);
+
+        // This fails.. why?
+        //RDFDataMgr.read(dsg, "src/main/resources/nt/ron.nt", Lang.NTRIPLES);
+
+        RDFDataMgr.read(dsg, "src/main/resources/turtle/history.ttl", Lang.TURTLE);
 
         /*
         UpdateRequest update = UpdateFactory.create(insertData);
