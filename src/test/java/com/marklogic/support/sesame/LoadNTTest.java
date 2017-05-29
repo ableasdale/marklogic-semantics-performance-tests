@@ -57,6 +57,21 @@ class LoadNTTest {
     @Benchmark
     @Test
     @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load an 11.8MB NT file (dbpedia60k.nt)")
+    public void testLoadingMediumN3File() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(30000), () -> {
+            conn.add(Utils.getFileReader("nt/dbpedia60k.nt"), "", RDFFormat.NTRIPLES);
+        });
+
+        // TODO - also assert the total number of docs
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 19GB NT file (ron-data.nt)")
     public void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
 
