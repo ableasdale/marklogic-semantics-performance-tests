@@ -10,6 +10,6 @@ public class Configuration {
     public static final String USERNAME = "q";
     public static final String PASSWORD = "q";
     public static final String AUTH = "DIGEST";
-    //public static final String DATABASE = "rest-example-1";
+    public static final String DATABASE = "rest-example-1";
 
 }

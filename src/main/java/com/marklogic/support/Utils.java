@@ -1,5 +1,7 @@
 package com.marklogic.support;
 
+import com.marklogic.client.io.FileHandle;
+import com.marklogic.client.semantics.RDFMimeTypes;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,11 @@ public class Utils {
             LOG.error(String.format("Unable to open file %s", name), e);
         }
         return null;
+    }
+
+    public static FileHandle getFileHandleForTurtleFile(String name) {
+        return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
+                        .withMimetype(RDFMimeTypes.TURTLE);
     }
 
 }
