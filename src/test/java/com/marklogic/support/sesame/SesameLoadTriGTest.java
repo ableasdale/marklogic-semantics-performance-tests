@@ -11,37 +11,30 @@ import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
- * Created by ableasdale on 26/05/2017.
+ * Created by ableasdale on 30/05/2017.
  */
-
 @MarkLogicSesame
-public class LoadNQuadTest {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+public class SesameLoadTriGTest {
 
     @Benchmark
     @Test
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 41.8MB N-Quads file (sider-indications_raw.nq)")
-    public void testLoadingLargeNQuadsFile() throws RepositoryException, IOException, RDFParseException {
+    @DisplayName("Using the MarkLogic Sesame API to load a 502Kb TriG file (charging-stations-export-20170530-095530.trig)")
+    public void testLoadingSmallTriGFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(30000), () -> {
-            conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
+        assertTimeoutPreemptively(ofMillis(3000), () -> {
+            conn.add(Utils.getFileReader("trig/charging-stations-export-20170530-095530.trig"), "", RDFFormat.TRIG);
         });
 
         // TODO - also assert the total number of docs
     }
-
 }

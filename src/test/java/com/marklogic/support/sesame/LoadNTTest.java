@@ -115,6 +115,7 @@ class LoadNTTest {
         // TODO - also assert the total number of docs
     }
 
+    /*
     @Test
     @Disabled("Example from JUnit 5 Docs...")
     @DisplayName("╯°□°）╯")
@@ -128,6 +129,6 @@ class LoadNTTest {
     void testWithDisplayNameContainingEmoji() {
         assertEquals(3, (1 + 2), "1 + 1 should equal 2");
     }
-
+*/
 }
 

@@ -25,9 +25,24 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  */
 
 @MarkLogicSesame
-public class LoadTurtleTest {
+public class SesameLoadTurtleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
+    public void testLoadingSmallXTurtleFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(2000), () -> {
+            conn.add(Utils.getFileReader("turtle/charging-stations-export-20170530-095533.ttl"), "", RDFFormat.TURTLE);
+        });
+
+        // TODO - also assert the total number of docs
+    }
 
     @Benchmark
     @Test
@@ -39,6 +54,21 @@ public class LoadTurtleTest {
 
         assertTimeoutPreemptively(ofMillis(2000), () -> {
             conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
+        });
+
+        // TODO - also assert the total number of docs
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 3.3MB Turtle file (unescothes.ttl)")
+    public void testLoadingMediumSizeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(50000), () -> {
+            conn.add(Utils.getFileReader("turtle/unescothes.ttl"), "", RDFFormat.TURTLE);
         });
 
         // TODO - also assert the total number of docs

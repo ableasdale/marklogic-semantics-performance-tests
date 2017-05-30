@@ -43,3 +43,6 @@ http://govwild.hpi-web.de/downloads/govwild-rdf-2012-01-30.zip
 NTriples TODO
 https://datahub.io/dataset/ispra-lod-ron (ron.nt)
 https://datahub.io/dataset/ispra-lod-rmn
+
+trix et al.
+https://datahub.io/dataset/charging-stations

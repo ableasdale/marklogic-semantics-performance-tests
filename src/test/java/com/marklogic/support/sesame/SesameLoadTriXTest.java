@@ -11,34 +11,33 @@ import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
- * Created by ableasdale on 26/05/2017.
+ * Created by ableasdale on 30/05/2017.
  */
-
 @MarkLogicSesame
-public class LoadNQuadTest {
+public class SesameLoadTriXTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+    /*
+    TODO - Why does this fail with "Invalid mime type:  reason: Unable to determine content type of payload.  Received application/trix"
+     */
 
     @Benchmark
     @Test
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 41.8MB N-Quads file (sider-indications_raw.nq)")
-    public void testLoadingLargeNQuadsFile() throws RepositoryException, IOException, RDFParseException {
+    @DisplayName("Using the MarkLogic Sesame API to load a 2.1MB TriX file (charging-stations-export-20170530-095413.xml)")
+    public void testLoadingSmallTriXFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
         assertTimeoutPreemptively(ofMillis(30000), () -> {
-            conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("trix/charging-stations-export-20170530-095413.xml"), "", RDFFormat.TRIX);
         });
 
         // TODO - also assert the total number of docs
