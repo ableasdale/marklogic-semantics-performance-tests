@@ -23,7 +23,7 @@ import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @MarkLogicSesame
-class LoadRDFXMLTest {
+class SesameLoadRDFXMLTest {
 
     @Benchmark
     @Test
@@ -43,12 +43,27 @@ class LoadRDFXMLTest {
     @Benchmark
     @Test
     @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 189KB RDF/XML file (currencies.rdf)")
+    public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(2000), () -> {
+            conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
+        });
+
+        // TODO - also assert the total number of docs
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 21.8MB RDF/XML file (peel.rdf)")
     public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(40000), () -> {
+        assertTimeoutPreemptively(ofMillis(45000), () -> {
             conn.add(Utils.getFileReader("rdfxml/peel.rdf"), "", RDFFormat.RDFXML);
         });
 

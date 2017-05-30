@@ -88,4 +88,19 @@ public class SesameLoadTurtleTest {
 
         // TODO - also assert the total number of docs
     }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic Sesame API to load a 130MB Turtle file (fulldump.ttl)")
+    public void testLoadingAnotherLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+
+        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
+        assertTimeoutPreemptively(ofMillis(50000), () -> {
+            conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE);
+        });
+
+        // TODO - also assert the total number of docs
+    }
 }

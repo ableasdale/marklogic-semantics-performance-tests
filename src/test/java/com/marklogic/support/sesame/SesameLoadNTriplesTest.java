@@ -20,9 +20,9 @@ import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@DisplayName("A set of tests designed for .nt files")
+@DisplayName("Benchmarking performance when loading N-Triples (.nt) files")
 @MarkLogicSesame
-class LoadNTTest {
+class SesameLoadNTriplesTest {
 
     @Benchmark
     @Test
@@ -58,7 +58,7 @@ class LoadNTTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 11.8MB NT file (dbpedia60k.nt)")
-    public void testLoadingMediumN3File() throws RepositoryException, IOException, RDFParseException {
+    public void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
@@ -72,7 +72,7 @@ class LoadNTTest {
     @Benchmark
     @Test
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 19GB NT file (ron-data.nt)")
+    @DisplayName("Using the MarkLogic Sesame API to load an 18.2MB NT file (ron-data.nt)")
     public void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
@@ -101,15 +101,14 @@ class LoadNTTest {
 
     @Benchmark
     @Test
-    @Disabled("Fails")
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 12.8MB NT file (Lexicon_Stratotype.nt)")
-    public void testLoadingLargeNQuadsFile() throws RepositoryException, IOException, RDFParseException {
+    @DisplayName("Using the MarkLogic Sesame API to load a 96.4MB NT file (2013-02-14-panlex-dump.nt)")
+    public void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(30000), () -> {
-            conn.add(Utils.getFileReader("nt/Lexicon_Stratotype.nt"), "", RDFFormat.NTRIPLES);
+        assertTimeoutPreemptively(ofMillis(80000), () -> {
+            conn.add(Utils.getFileReader("nt/2013-02-14-panlex-dump.nt"), "", RDFFormat.NTRIPLES);
         });
 
         // TODO - also assert the total number of docs
