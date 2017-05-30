@@ -97,7 +97,7 @@ public class SesameLoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(50000), () -> {
+        assertTimeoutPreemptively(ofMillis(90000), () -> {
             conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE);
         });
 
