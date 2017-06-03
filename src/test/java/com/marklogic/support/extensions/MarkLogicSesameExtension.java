@@ -28,7 +28,9 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
 
     @Override
     public void afterAll(ContainerExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC Sesame: AFTER ALL :)");
+        LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
+        assertTrue(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection().isEmpty());
+        assertTrue(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection().size() == 0);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.marklogic.support.sesame;
 
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
+import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicSesame;
@@ -11,13 +12,11 @@ import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 
-import static java.time.Duration.ofMillis;
+import static java.time.Duration.ofSeconds;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
@@ -27,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @MarkLogicSesame
 public class SesameLoadTurtleTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    //private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Benchmark
     @Test
@@ -37,11 +36,11 @@ public class SesameLoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(2000), () -> {
+        assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("turtle/charging-stations-export-20170530-095533.ttl"), "", RDFFormat.TURTLE);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(8900, SPARQLUtils.countAllTriples(conn));
     }
 
     @Benchmark
@@ -52,11 +51,11 @@ public class SesameLoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(2000), () -> {
+        assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(23485, SPARQLUtils.countAllTriples(conn));
     }
 
     @Benchmark
@@ -67,11 +66,11 @@ public class SesameLoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(50000), () -> {
+        assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("turtle/unescothes.ttl"), "", RDFFormat.TURTLE);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(75202, SPARQLUtils.countAllTriples(conn));
     }
 
     @Benchmark
@@ -82,11 +81,12 @@ public class SesameLoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(50000), () -> {
+        assertTimeoutPreemptively(ofSeconds(50), () -> {
             conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(391551, SPARQLUtils.countAllTriples(conn));
+        //TODO :: 595673??
     }
 
     @Benchmark
@@ -97,10 +97,10 @@ public class SesameLoadTurtleTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(90000), () -> {
+        assertTimeoutPreemptively(ofSeconds(95), () -> {
             conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(204122, SPARQLUtils.countAllTriples(conn));
     }
 }

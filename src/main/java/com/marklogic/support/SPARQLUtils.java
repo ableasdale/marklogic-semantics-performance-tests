@@ -14,10 +14,11 @@ import org.openrdf.repository.RepositoryException;
 public class SPARQLUtils {
 
     private static final String SELECT_ALL = "select (count(*) as ?total) where { ?s ?p ?o . }";
+    private static final String CLEAR_ALL = "CLEAR ALL";
 
     public static void deleteAllTriples(MarkLogicRepositoryConnection conn) {
         try {
-            conn.prepareUpdate("CLEAR ALL").execute();
+            conn.prepareUpdate(CLEAR_ALL).execute();
         } catch (RepositoryException | UpdateExecutionException | MalformedQueryException e) {
             throw new RuntimeException(e);
         }

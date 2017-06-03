@@ -3,6 +3,7 @@ package com.marklogic.support.jena;
 
 import com.marklogic.semantics.jena.MarkLogicDatasetGraph;
 import com.marklogic.semantics.jena.MarkLogicDatasetGraphFactory;
+import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.annotations.MarkLogicJavaClient;
 import com.marklogic.support.annotations.MarkLogicJena;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 import static com.marklogic.support.Utils.getFileHandleForTurtleFile;
 import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
@@ -51,6 +53,6 @@ public class JenaLoadTurtleTest {
         });
 */
 
-        // TODO - also assert the total number of docs
+        // TODO assertEquals(391551, SPARQLUtils.countAllTriples(conn));
     }
 }
