@@ -13,6 +13,8 @@ import org.openrdf.repository.RepositoryException;
  */
 public class SPARQLUtils {
 
+    private static final String SELECT_ALL = "select (count(*) as ?total) where { ?s ?p ?o . }";
+
     public static void deleteAllTriples(MarkLogicRepositoryConnection conn) {
         try {
             conn.prepareUpdate("CLEAR ALL").execute();
@@ -22,15 +24,14 @@ public class SPARQLUtils {
     }
 
     public static boolean isDatabaseEmpty(MarkLogicRepositoryConnection conn) {
-        return countAllTriples(conn).equals("0");
+        return countAllTriples(conn) == 0;
     }
 
-    public static String countAllTriples(MarkLogicRepositoryConnection conn) {
+    public static int countAllTriples(MarkLogicRepositoryConnection conn) {
         try {
-            String query = "select (count(*) as ?total) where { ?s ?p ?o . }";
-            MarkLogicTupleQuery tupleQuery = conn.prepareTupleQuery(query);
+            MarkLogicTupleQuery tupleQuery = conn.prepareTupleQuery(SELECT_ALL);
             TupleQueryResult result = tupleQuery.evaluate();
-            return result.next().getBinding("total").getValue().stringValue();
+            return Integer.parseInt(result.next().getBinding("total").getValue().stringValue());
         } catch (RepositoryException | QueryEvaluationException | MalformedQueryException e) {
             throw new RuntimeException(e);
         }
