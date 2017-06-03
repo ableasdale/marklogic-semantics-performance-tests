@@ -1,5 +1,7 @@
 package com.marklogic.support.extensions;
 
+import com.marklogic.support.SPARQLUtils;
+import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,12 +22,14 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
 
     @Override
     public void afterTestExecution(TestExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC Jena Client: AFTER Test");
+        LOG.debug("MARKLOGIC Jena Client (AFTER TEST) :: Clearing all triples");
+        SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
     }
 
     @Override
     public void beforeAll(ContainerExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC Jena Client: BEFORE ALL");
+        LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
+        // Todo - check connection
     }
 
     @Override

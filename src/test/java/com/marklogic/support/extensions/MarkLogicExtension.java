@@ -14,12 +14,12 @@ public class MarkLogicExtension implements BeforeAllCallback, BeforeTestExecutio
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public MarkLogicExtension() {
-        LOG.info("MarkLogic Extension here..");
+        LOG.debug(String.format("%s (CONSTRUCTOR)", MethodHandles.lookup().lookupClass().getSimpleName()));
     }
 
     @Override
     public void beforeAll(ContainerExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: BEFORE ALL :)");
+        LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
     }
 
     @Override
