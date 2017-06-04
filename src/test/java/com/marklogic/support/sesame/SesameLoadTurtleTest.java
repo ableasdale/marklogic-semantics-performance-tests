@@ -33,13 +33,11 @@ public class SesameLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
-    public void testLoadingSmallXTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingSmallXTurtleFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofSeconds(2), () -> {
-            conn.add(Utils.getFileReader("turtle/charging-stations-export-20170530-095533.ttl"), "", RDFFormat.TURTLE);
-        });
+        assertTimeoutPreemptively(ofSeconds(2), () -> conn.add(Utils.getFileReader("turtle/charging-stations-export-20170530-095533.ttl"), "", RDFFormat.TURTLE));
 
         assertEquals(8900, SPARQLUtils.countAllTriples(conn));
     }
@@ -48,13 +46,11 @@ public class SesameLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 779K Turtle file (units.ttl)")
-    public void testLoadingSmallTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingSmallTurtleFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofSeconds(2), () -> {
-            conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
-        });
+        assertTimeoutPreemptively(ofSeconds(2), () -> conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE));
 
         assertEquals(23485, SPARQLUtils.countAllTriples(conn));
     }
@@ -63,13 +59,11 @@ public class SesameLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 3.3MB Turtle file (unescothes.ttl)")
-    public void testLoadingMediumSizeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingMediumSizeTurtleFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofSeconds(10), () -> {
-            conn.add(Utils.getFileReader("turtle/unescothes.ttl"), "", RDFFormat.TURTLE);
-        });
+        assertTimeoutPreemptively(ofSeconds(10), () -> conn.add(Utils.getFileReader("turtle/unescothes.ttl"), "", RDFFormat.TURTLE));
 
         assertEquals(75202, SPARQLUtils.countAllTriples(conn));
     }
@@ -78,13 +72,11 @@ public class SesameLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 51MB Turtle file (history.ttl)")
-    public void testLoadingLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofSeconds(50), () -> {
-            conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
-        });
+        assertTimeoutPreemptively(ofSeconds(50), () -> conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE));
 
         assertEquals(391551, SPARQLUtils.countAllTriples(conn));
     }
@@ -93,13 +85,11 @@ public class SesameLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 130MB Turtle file (fulldump.ttl)")
-    public void testLoadingAnotherLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingAnotherLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofSeconds(95), () -> {
-            conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE);
-        });
+        assertTimeoutPreemptively(ofSeconds(95), () -> conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE));
 
         assertEquals(204122, SPARQLUtils.countAllTriples(conn));
     }
