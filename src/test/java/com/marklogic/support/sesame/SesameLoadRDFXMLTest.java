@@ -5,6 +5,7 @@ package com.marklogic.support.sesame;
  */
 
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
+import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicSesame;
@@ -20,9 +21,12 @@ import org.openrdf.rio.RDFParseException;
 import java.io.IOException;
 
 import static java.time.Duration.ofMillis;
+import static java.time.Duration.ofSeconds;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @MarkLogicSesame
+@DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the Sesame Repository API")
 class SesameLoadRDFXMLTest {
 
     @Benchmark
@@ -33,11 +37,11 @@ class SesameLoadRDFXMLTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(2000), () -> {
+        assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(9330, SPARQLUtils.countAllTriples(conn));
     }
 
     @Benchmark
@@ -48,11 +52,11 @@ class SesameLoadRDFXMLTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(2000), () -> {
+        assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(3231, SPARQLUtils.countAllTriples(conn));
     }
 
     @Benchmark
@@ -63,17 +67,18 @@ class SesameLoadRDFXMLTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(45000), () -> {
+        assertTimeoutPreemptively(ofSeconds(45), () -> {
             conn.add(Utils.getFileReader("rdfxml/peel.rdf"), "", RDFFormat.RDFXML);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(271369, SPARQLUtils.countAllTriples(conn));
     }
 
 
     @Benchmark
     @Test
     @Disabled("file can't be parsed right now - need to figure out why...")
+    // -- XDMP-BASEURI (err:FOER0000): Undeclared base URI . See the MarkLogic server error log for further detail.
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 187.1MB RDF/XML file (geospecies.rdf)")
     public void testLoadingLargeRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
@@ -84,6 +89,6 @@ class SesameLoadRDFXMLTest {
             conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(0, SPARQLUtils.countAllTriples(conn));
     }
 }

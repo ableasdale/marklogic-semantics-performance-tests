@@ -35,7 +35,7 @@ public class SesameLoadN3Test {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofSeconds(45), () -> {
+        assertTimeoutPreemptively(ofSeconds(50), () -> {
             conn.add(Utils.getFileReader("n3/event-dump.n3"), "", RDFFormat.N3);
         });
 

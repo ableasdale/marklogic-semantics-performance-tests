@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  */
 
 @MarkLogicSesame
+@DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the Sesame Repository API")
 public class SesameLoadTurtleTest {
 
     //private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
