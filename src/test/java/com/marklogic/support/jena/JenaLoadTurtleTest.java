@@ -64,7 +64,7 @@ public class JenaLoadTurtleTest {
     @Benchmark
     @Test
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 130MB Turtle file (fulldump.ttl)")
+    @DisplayName("Using the Jena Client API to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() {
         assertTimeoutPreemptively(ofSeconds(1000), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/turtle/fulldump.ttl", Lang.TURTLE));
         assertEquals(204122, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
