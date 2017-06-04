@@ -86,7 +86,6 @@ public class SesameLoadTurtleTest {
         });
 
         assertEquals(391551, SPARQLUtils.countAllTriples(conn));
-        //TODO :: 595673??
     }
 
     @Benchmark
