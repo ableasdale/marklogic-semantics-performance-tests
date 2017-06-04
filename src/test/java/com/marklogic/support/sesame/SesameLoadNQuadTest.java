@@ -28,9 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  */
 
 @MarkLogicSesame
+@DisplayName("Benchmarking performance when loading N-Quad (.nq) files using the Sesame Repository API")
 public class SesameLoadNQuadTest {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Benchmark
     @Test

@@ -24,9 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  */
 
 @MarkLogicSesame
+@DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the Sesame Repository API")
 public class SesameLoadN3Test {
-
-    // private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Benchmark
     @Test
