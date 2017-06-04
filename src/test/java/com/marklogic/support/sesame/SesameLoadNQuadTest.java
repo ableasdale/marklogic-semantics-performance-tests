@@ -1,6 +1,7 @@
 package com.marklogic.support.sesame;
 
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
+import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicSesame;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofMillis;
+import static java.time.Duration.ofSeconds;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
@@ -37,11 +40,11 @@ public class SesameLoadNQuadTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(30000), () -> {
+        assertTimeoutPreemptively(ofSeconds(20), () -> {
             conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(163774, SPARQLUtils.countAllTriples(conn));
     }
 
     @Benchmark
@@ -52,10 +55,10 @@ public class SesameLoadNQuadTest {
 
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
 
-        assertTimeoutPreemptively(ofMillis(190000), () -> {
+        assertTimeoutPreemptively(ofSeconds(80), () -> {
             conn.add(Utils.getFileReader("nquads/sider-label_mapping.nq"), "", RDFFormat.NQUADS);
         });
 
-        // TODO - also assert the total number of docs
+        assertEquals(665161, SPARQLUtils.countAllTriples(conn));
     }
 }
