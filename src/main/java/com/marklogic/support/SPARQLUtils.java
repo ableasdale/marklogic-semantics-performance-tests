@@ -1,5 +1,9 @@
 package com.marklogic.support;
 
+import com.marklogic.client.DatabaseClient;
+import com.marklogic.client.io.StringHandle;
+import com.marklogic.client.semantics.SPARQLMimeTypes;
+import com.marklogic.client.semantics.SPARQLQueryManager;
 import com.marklogic.semantics.jena.MarkLogicDatasetGraph;
 import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
 import com.marklogic.semantics.sesame.query.MarkLogicTupleQuery;
@@ -22,6 +26,7 @@ import org.openrdf.repository.RepositoryException;
  */
 public class SPARQLUtils {
 
+   // private static final String SELECT_ALL_SHORT = "select count(*) where { ?s ?p ?o . }";
     private static final String SELECT_ALL = "select (count(*) as ?total) where { ?s ?p ?o . }";
     private static final String CLEAR_ALL = "CLEAR ALL";
 
@@ -62,6 +67,7 @@ public class SPARQLUtils {
     public static int countAllTriples(MarkLogicDatasetGraph dsg) {
 
         QueryExecution execution = QueryExecutionFactory.create(SELECT_ALL, dsg.toDataset());
+        // TODO - this is a little janky right now - can this be rewritten to make it less messy?
         int n = 1;
         for (ResultSet results = execution.execSelect();
              results.hasNext();
@@ -88,5 +94,24 @@ public class SPARQLUtils {
 
     public static boolean isDatabaseEmpty(MarkLogicDatasetGraph dsg) {
         return countAllTriples(dsg) == 0;
+    }
+
+    /**
+     * Count all triples using the MarkLogic Java Client API
+     *
+     * @param client
+     * @return
+     */
+    public static int countAllTriples(DatabaseClient client) {
+        SPARQLQueryManager sparqlMgr = client.newSPARQLQueryManager();
+
+        // TODO - works for now; but there *MUST* be a better way to do this??
+        // .newRowManager() perhaps?
+        String total = sparqlMgr.executeSelect(
+                sparqlMgr.newQueryDefinition(SELECT_ALL),
+                new StringHandle().withMimetype(SPARQLMimeTypes.SPARQL_CSV)
+        ).get().split(System.lineSeparator())[1];
+
+        return Integer.parseInt(total);
     }
 }

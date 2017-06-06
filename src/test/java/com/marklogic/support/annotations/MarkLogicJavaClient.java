@@ -1,6 +1,6 @@
 package com.marklogic.support.annotations;
 
-import com.marklogic.support.extensions.MarkLogicExtension;
+import com.marklogic.support.extensions.MarkLogicJavaApiExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.Retention;
@@ -16,6 +16,6 @@ import static java.lang.annotation.ElementType.TYPE;
  */
 @Target({TYPE, METHOD, ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(MarkLogicExtension.class)
+@ExtendWith(MarkLogicJavaApiExtension.class)
 public @interface MarkLogicJavaClient {
 }

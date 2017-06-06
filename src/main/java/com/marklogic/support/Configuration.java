@@ -11,6 +11,7 @@ public class Configuration {
     public static final String PASSWORD = "q";
     public static final String AUTH = "DIGEST";
     public static final String DATABASE = "rest-example";
+    public static final String WORKING_DIRECTORY = "/space";
 
     // TODO - Configure triple idx (XDMP-TRPLIDXNOTFOUND) AND COLLECTION LEXICON
 
