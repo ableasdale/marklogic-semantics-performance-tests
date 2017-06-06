@@ -13,7 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 /**
@@ -46,6 +49,28 @@ public class ReSTLoadTurtleTest {
 
     }
 
+
+    @Test
+    public void testLoadingTurtleFile() throws IOException {
+
+        // This will load a turtle file using the ReST API! :)
+
+        Client client = Client.create();
+        client.addFilter(new HTTPDigestAuthFilter(Configuration.USERNAME, Configuration.PASSWORD));
+        WebResource webResource = client.
+                resource("http://"+Configuration.HOST+":"+Configuration.PORT+"/v1/graphs?default");
+
+        String input = new String(Files.readAllBytes(Paths.get("src/main/resources/turtle/units.ttl")));
+        //System.out.println("Contents (Java 7) : " + contents);
+
+        ClientResponse response = webResource.type("application/x-turtle")
+                .post(ClientResponse.class, input);
+        LOG.info("Status: "+ response.getStatus());
+
+        //String input = "{\"person\":{\"first\":\"John\", \"last\":\"Doe\"}}";
+
+        // curl --anyauth --user q:q -i -X POST 'http://localhost:8000/v1/graphs?default&database=example_app_db' -d @./nquad1.nq -H "Content-type:application/n-quads"
+    }
 
 
     @Benchmark

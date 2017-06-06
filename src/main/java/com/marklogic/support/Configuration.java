@@ -12,6 +12,7 @@ public class Configuration {
     public static final String AUTH = "DIGEST";
     public static final String DATABASE = "rest-example";
     public static final String WORKING_DIRECTORY = "/space";
+    public static final String RESOURCES = "src/main/resources/";
 
     // TODO - Configure triple idx (XDMP-TRPLIDXNOTFOUND) AND COLLECTION LEXICON
 
