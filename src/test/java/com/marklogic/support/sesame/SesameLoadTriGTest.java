@@ -31,13 +31,11 @@ public class SesameLoadTriGTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 502Kb TriG file (charging-stations-export-20170530-095530.trig)")
     public void testLoadingSmallTriGFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofMillis(3000), () -> {
             conn.add(Utils.getFileReader("trig/charging-stations-export-20170530-095530.trig"), "", RDFFormat.TRIG);
         });
-
         assertEquals(8900, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 }

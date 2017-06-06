@@ -36,14 +36,12 @@ public class SesameLoadNQuadTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 41.8MB N-Quads file (sider-indications_raw.nq)")
     public void testLoadingMediumNQuadsFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(20), () -> {
             conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
         });
-
         assertEquals(163774, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -51,13 +49,11 @@ public class SesameLoadNQuadTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 262.1MB N-Quads file (sider-label_mapping.nq)")
     public void testLoadingLargeNQuadsFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(80), () -> {
             conn.add(Utils.getFileReader("nquads/sider-label_mapping.nq"), "", RDFFormat.NQUADS);
         });
-
         assertEquals(665161, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 }

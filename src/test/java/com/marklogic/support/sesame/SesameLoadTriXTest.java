@@ -37,14 +37,12 @@ public class SesameLoadTriXTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 2.1MB TriX file (charging-stations-export-20170530-095413.xml)")
     public void testLoadingSmallTriXFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofMillis(30000), () -> {
             conn.add(Utils.getFileReader("trix/charging-stations-export-20170530-095413.xml"), "", RDFFormat.TRIX);
         });
-
         assertEquals(3231, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
 }

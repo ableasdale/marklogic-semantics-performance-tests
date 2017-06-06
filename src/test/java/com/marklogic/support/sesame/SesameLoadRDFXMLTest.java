@@ -34,14 +34,12 @@ class SesameLoadRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 175KB RDF/XML file (countries.rdf)")
     public void testLoadingSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
         });
-
         assertEquals(9330, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -49,14 +47,12 @@ class SesameLoadRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 189KB RDF/XML file (currencies.rdf)")
     public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
         });
-
         assertEquals(3231, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -64,14 +60,12 @@ class SesameLoadRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 21.8MB RDF/XML file (peel.rdf)")
     public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(45), () -> {
             conn.add(Utils.getFileReader("rdfxml/peel.rdf"), "", RDFFormat.RDFXML);
         });
-
         assertEquals(271369, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
 
@@ -82,13 +76,11 @@ class SesameLoadRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 187.1MB RDF/XML file (geospecies.rdf)")
     public void testLoadingLargeRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofMillis(50000), () -> {
             conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
         });
-
         assertEquals(0, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 }

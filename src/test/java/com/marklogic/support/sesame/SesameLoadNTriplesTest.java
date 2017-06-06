@@ -28,14 +28,12 @@ class SesameLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 506Kb NT file (ron.nt)")
     public void testLoadingSmallNtFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("nt/ron.nt"), "", RDFFormat.NTRIPLES);
         });
-
         assertEquals(3348, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -43,14 +41,12 @@ class SesameLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 801Kb NT file (rmn.nt)")
     public void testLoadingAnotherSmallNtFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("nt/rmn.nt"), "", RDFFormat.NTRIPLES);
         });
-
         assertEquals(5069, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -58,14 +54,12 @@ class SesameLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 11.8MB NT file (dbpedia60k.nt)")
     public void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/dbpedia60k.nt"), "", RDFFormat.NTRIPLES);
         });
-
         assertEquals(58512, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -73,14 +67,12 @@ class SesameLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 18.2MB NT file (ron-data.nt)")
     public void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/ron-data.nt"), "", RDFFormat.NTRIPLES);
         });
-
         assertEquals(109672, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -88,14 +80,12 @@ class SesameLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 18.2MB NT file (rmn-data.nt)")
     public void testLoadingAnotherMedNtFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/rmn-data.nt"), "", RDFFormat.NTRIPLES);
         });
-
         assertEquals(113904, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
     @Benchmark
@@ -103,14 +93,12 @@ class SesameLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 96.4MB NT file (2013-02-14-panlex-dump.nt)")
     public void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {
-
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-
         assertTimeoutPreemptively(ofSeconds(50), () -> {
             conn.add(Utils.getFileReader("nt/2013-02-14-panlex-dump.nt"), "", RDFFormat.NTRIPLES);
         });
-
         assertEquals(746399, SPARQLUtils.countAllTriples(conn));
+        conn.close();
     }
 
 }
