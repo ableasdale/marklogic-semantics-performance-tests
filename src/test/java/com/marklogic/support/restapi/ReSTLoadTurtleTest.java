@@ -7,10 +7,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.Assert.assertEquals;
@@ -22,8 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the ReST API endpoints")
 public class ReSTLoadTurtleTest {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Benchmark
     @Test
@@ -48,9 +42,20 @@ public class ReSTLoadTurtleTest {
     @Benchmark
     @Test
     @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 3.3MB Turtle file (unescothes.ttl)")
+    void testLoadingMediumSizeTurtleFile() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(2), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/unescothes.ttl"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
+    }
+
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 51MB Turtle file (history.ttl)")
     public void testLoadingTurtleFile() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(50), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/history.ttl"));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(55), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/history.ttl"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after
     }
