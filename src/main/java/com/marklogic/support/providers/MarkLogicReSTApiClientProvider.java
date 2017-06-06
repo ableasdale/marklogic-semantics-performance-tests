@@ -20,12 +20,19 @@ import java.nio.file.Paths;
 public class MarkLogicReSTApiClientProvider {
 
     private static URI DEFAULT_GRAPH = UriBuilder.fromUri(String.format("http://%s:%d/v1/graphs?default", Configuration.HOST, Configuration.PORT)).build();
+    private static URI LATEST_REST_APIS = UriBuilder.fromUri(String.format("http://%s:%d/LATEST/rest-apis", Configuration.HOST, 8002)).build();
+
     private static String TURTLE_MIMETYPE = "application/x-turtle";
 
     public static Client getConfiguredInstance() {
         Client client = Client.create();
         client.addFilter(new HTTPDigestAuthFilter(Configuration.USERNAME, Configuration.PASSWORD));
         return client;
+    }
+
+    public static ClientResponse createGetForValidationCheck() {
+        WebResource wr = getConfiguredInstance().resource(LATEST_REST_APIS);
+        return wr.type("application/json").get(ClientResponse.class);
     }
 
     public static ClientResponse createPost(String filename, String mimetype) {

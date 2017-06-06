@@ -1,11 +1,9 @@
 package com.marklogic.support.restapi;
 
-import com.marklogic.support.Configuration;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicReST;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -26,23 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class ReSTLoadTurtleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-    @Test
-    public void testGet() {
-
-        // TODO - this is more of a "before all" basic check...
-        WebResource webResource = MarkLogicReSTApiClientProvider.getConfiguredInstance().
-                resource("http://" + Configuration.HOST + ":" + Configuration.PORT + "/LATEST/rest-apis");
-
-        LOG.info("ABOUT to GET");
-        ClientResponse response = webResource.type("application/json")
-                .get(ClientResponse.class);
-
-
-        LOG.info(response.getEntity(String.class));
-
-
-    }
 
     @Benchmark
     @Test
@@ -85,13 +66,8 @@ public class ReSTLoadTurtleTest {
     }
 }
 
-
 // http://localhost:8003/v1/documents?uri=/docs/person.json
-
 // curl --anyauth --user q:q -i -X POST 'http://localhost:8000/v1/graphs?default&database=example_app_db' -d @./nquad1.nq -H "Content-type:application/n-quads"
-
 // http://0.0.0.0:8003/v1/documents?uri=http://marklogic.com/semantics#default-graph
-
-
 //assertTimeoutPreemptively(ofSeconds(10), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/turtle/charging-stations-export-20170530-095533.ttl", Lang.TURTLE));
 //assertEquals(8900, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
