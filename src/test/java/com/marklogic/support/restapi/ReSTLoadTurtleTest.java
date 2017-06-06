@@ -14,7 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import static java.time.Duration.ofSeconds;
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 /**
  * Created by ableasdale on 06/06/2017.
@@ -42,23 +44,44 @@ public class ReSTLoadTurtleTest {
 
     }
 
-
-    @Test
-    public void testLoadingTurtleFile() {
-        ClientResponse res = MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/history.ttl");
-        assertEquals(204, res.getStatus());
-        // TODO - count triples after
-    }
-
-
     @Benchmark
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
     public void testLoadingSmallXTurtleFile() {
-        ClientResponse res = MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/charging-stations-export-20170530-095533.ttl");
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(2), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/charging-stations-export-20170530-095533.ttl"));
         assertEquals(204, res.getStatus());
-// TODO - count triples after
+        // TODO - count triples after
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 779K Turtle file (units.ttl)")
+    void testLoadingSmallTurtleFile() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(2), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/units.ttl"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 51MB Turtle file (history.ttl)")
+    public void testLoadingTurtleFile() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(50), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/history.ttl"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
+    }
+
+    @Benchmark
+    @Test
+    @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 130MB Turtle file (fulldump.ttl)")
+    void testLoadingAnotherLargeTurtleFile() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(90), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/fulldump.ttl"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
     }
 }
 

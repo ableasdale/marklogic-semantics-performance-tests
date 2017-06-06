@@ -21,7 +21,6 @@ public class MarkLogicReSTApiClientProvider {
 
     private static URI DEFAULT_GRAPH = UriBuilder.fromUri(String.format("http://%s:%d/v1/graphs?default", Configuration.HOST, Configuration.PORT)).build();
     private static String TURTLE_MIMETYPE = "application/x-turtle";
-    //, "application/x-turtle"
 
     public static Client getConfiguredInstance() {
         Client client = Client.create();
