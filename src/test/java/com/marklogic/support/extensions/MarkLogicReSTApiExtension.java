@@ -17,27 +17,27 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Override
-    public void afterAll(ContainerExtensionContext context) throws Exception {
+    public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (AFTER ALL TESTS) ■");
 
     }
 
     @Override
-    public void afterTestExecution(TestExtensionContext context) throws Exception {
+    public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER TEST) :: Clearing all triples", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic ReST API Client (AFTER) ■ %s ■■", context.getDisplayName()));
     }
 
     @Override
-    public void beforeAll(ContainerExtensionContext context) throws Exception {
+    public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (BEFORE ALL TESTS) ■");
         assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().getStatus());
     }
 
     @Override
-    public void beforeTestExecution(TestExtensionContext context) throws Exception {
+    public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ Sesame ReST API Client (BEFORE) ■ %s ■■", context.getDisplayName()));
     }

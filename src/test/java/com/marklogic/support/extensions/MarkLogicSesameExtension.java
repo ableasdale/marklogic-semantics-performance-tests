@@ -19,7 +19,7 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
 
 
     @Override
-    public void beforeAll(ContainerExtensionContext context) throws Exception {
+    public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Sesame Repository API Client (BEFORE ALL TESTS) ■");
         assertTrue(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection().isOpen());
@@ -28,7 +28,7 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
     }
 
     @Override
-    public void afterAll(ContainerExtensionContext context) throws Exception {
+    public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Sesame Repository API Client (AFTER ALL TESTS) ■");
         assertTrue(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection().isEmpty());
@@ -36,14 +36,14 @@ public class MarkLogicSesameExtension implements BeforeAllCallback, BeforeTestEx
     }
 
     @Override
-    public void afterTestExecution(TestExtensionContext context) throws Exception {
+    public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER TEST) :: Clearing all triples", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ Sesame Repository API Client (AFTER) ■■ %s", context.getDisplayName()));
         SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
     }
 
     @Override
-    public void beforeTestExecution(TestExtensionContext context) throws Exception {
+    public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ Sesame Repository API Client (BEFORE) ■■ %s", context.getDisplayName()));
         assertTrue(SPARQLUtils.isDatabaseEmpty(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection()));

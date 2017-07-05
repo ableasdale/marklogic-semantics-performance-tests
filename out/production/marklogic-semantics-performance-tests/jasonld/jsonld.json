@@ -1,0 +1,104 @@
+{
+    "@context":{
+        "xsd":"http://www.w3.org/2001/XMLSchema#",
+        "skosxl":"http://www.w3.org/2008/05/skos-xl#",
+        "dcterms":"http://purl.org/dc/terms/",
+        "owl":"http://www.w3.org/2002/07/owl#",
+        "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+        "unescothes":"http://skos.um.es/unescothes/",
+        "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "iso-thes":"http://purl.org/iso25964/skos-thes#",
+        "uneskos":"http://purl.org/umu/uneskos#",
+        "dc":"http://purl.org/dc/elements/1.1/",
+        "skos":"http://www.w3.org/2004/02/skos/core#",
+        "skos:broader":{
+            "@type":"@id"
+        },
+        "skos:inScheme":{
+            "@type":"@id"
+        },
+        "skos:related":{
+            "@type":"@id"
+        },
+        "skos:narrower":{
+            "@type":"@id"
+        },
+        "skos:hasTopConcept":{
+            "@type":"@id"
+        },
+        "skos:topConceptOf":{
+            "@type":"@id"
+        },
+        "iso-thes:microThesaurusOf":{
+            "@type":"@id"
+        },
+        "iso-thes:subGroup":{
+            "@type":"@id"
+        },
+        "iso-thes:SuperGroup":{
+            "@type":"@id"
+        },
+        "uneskos:hasMicroThesaurus":{
+            "@type":"@id"
+        },
+        "uneskos:memberOf":{
+            "@type":"@id"
+        },
+        "uneskos:hasMainConcept":{
+            "@type":"@id"
+        },
+        "uneskos:mainConceptOf":{
+            "@type":"@id"
+        }
+        
+    },
+    "@id":"unescothes:C01194",
+    "@type":"skos:Concept",
+    "skos:prefLabel":[
+        {
+            "@language":"ru",
+            "@value":"\\u041E\\u0431\\u0440\\u0430\\u0437\\u043E\\u0432\\u0430\\u043D\\u0438\\u0435"
+        },
+        {
+            "@language":"es",
+            "@value":"Educaci\\u00F3n"
+        },
+        {
+            "@language":"fr",
+            "@value":"\\u00C9ducation"
+        },
+        {
+            "@language":"en",
+            "@value":"Education"
+        }
+        
+    ],
+    "skos:inScheme":"unescothes:CS000",
+    "skos:topConceptOf":"unescothes:CS000",
+    "skos:related":[
+        "unescothes:C03974",
+        "unescothes:C02240"
+    ],
+    "skos:scopeNote":[
+        {
+            "@language":"ru",
+            "@value":"\\u041F\\u0440\\u043E\\u0446\\u0435\\u0441\\u0441,
+             \\u0441\\u043F\\u043E\\u0441\\u043E\\u0431\\u0441\\u0442\\u0432\\u0443\\u044E\\u0449\\u0438\\u0439 \\u0440\\u0430\\u0437\\u0432\\u0438\\u0442\\u0438\\u044E \\u0441\\u043F\\u043E\\u0441\\u043E\\u0431\\u043D\\u043E\\u0441\\u0442\\u0435\\u0439,
+             \\u043E\\u0442\\u043D\\u043E\\u0448\\u0435\\u043D\\u0438\\u0439 \\u0438 \\u0434\\u0440\\u0443\\u0433\\u0438\\u0445 \\u0444\\u043E\\u0440\\u043C \\u043F\\u043E\\u0432\\u0435\\u0434\\u0435\\u043D\\u0438\\u044F,
+             \\u0432\\u043E\\u0441\\u043F\\u0440\\u0438\\u043D\\u0438\\u043C\\u0430\\u0435\\u043C\\u044B\\u0445 \\u043E\\u0431\\u0449\\u0435\\u0441\\u0442\\u0432\\u043E\\u043C \\u043A\\u0430\\u043A \\u0434\\u043E\\u0441\\u0442\\u043E\\u0438\\u043D\\u0441\\u0442\\u0432\\u043E. \\u0412 \\u043D\\u0435\\u043E\\u0431\\u0445\\u043E\\u0434\\u0438\\u043C\\u044B\\u0445 \\u0441\\u043B\\u0443\\u0447\\u0430\\u044F\\u0445 \\u0438\\u0441\\u043F\\u043E\\u043B\\u044C\\u0437\\u0443\\u0439\\u0442\\u0435 \\u0431\\u043E\\u043B\\u0435\\u0435 \\u0442\\u043E\\u0447\\u043D\\u044B\\u0439 \\u0434\\u0435\\u0441\\u043A\\u0440\\u0438\\u043F\\u0442\\u043E\\u0440."
+        },
+        {
+            "@language":"fr",
+            "@value":"Mise en oeuvre de moyens par lesquels l'on d\\u00E9veloppe des capacit\\u00E9s,
+             des attitudes et autres formes de comportements valoris\\u00E9s par la soci\\u00E9t\\u00E9 dans laquelle on vit. Utiliser un descripteur plus pr\\u00E9cis."
+        },
+        {
+            "@language":"es",
+            "@value":"Proceso por el cual uno desarrolla habilidades,
+             actitudes y otras formas de comportamiento valoradas por la sociedad en la que vive. Utilizar un descriptor m\\u00E1s preciso."
+        }
+        
+    ],
+    "uneskos:memberOf":"unescothes:COL105",
+    "uneskos:mainConceptOf":"unescothes:COL105"
+}

@@ -43,7 +43,7 @@ public class BenchmarkExtension
     // HELPER
 
     @Override
-    public void beforeAll(ContainerExtensionContext context) {
+    public void beforeAll(ExtensionContext context) {
         if (!shouldBeBenchmarked(context))
             return;
 
@@ -51,7 +51,7 @@ public class BenchmarkExtension
     }
 
     @Override
-    public void beforeTestExecution(TestExtensionContext context) {
+    public void beforeTestExecution(ExtensionContext context) {
         if (!shouldBeBenchmarked(context))
             return;
 
@@ -59,7 +59,7 @@ public class BenchmarkExtension
     }
 
     @Override
-    public void afterTestExecution(TestExtensionContext context) {
+    public void afterTestExecution(ExtensionContext context) {
         if (!shouldBeBenchmarked(context))
             return;
 
@@ -69,7 +69,7 @@ public class BenchmarkExtension
     }
 
     @Override
-    public void afterAll(ContainerExtensionContext context) {
+    public void afterAll(ExtensionContext context) {
         if (!shouldBeBenchmarked(context))
             return;
 

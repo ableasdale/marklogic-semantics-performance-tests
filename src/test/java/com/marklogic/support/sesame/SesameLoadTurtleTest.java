@@ -8,6 +8,7 @@ import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 28/05/2017.
  */
 
+@Tag("turtle")
 @MarkLogicSesame
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the Sesame Repository API")
 public class SesameLoadTurtleTest {
@@ -79,7 +81,9 @@ public class SesameLoadTurtleTest {
     @DisplayName("Using the MarkLogic Sesame API to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+
         assertTimeoutPreemptively(ofSeconds(95), () -> conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE));
+
         assertEquals(204122, SPARQLUtils.countAllTriples(conn));
         conn.close();
     }

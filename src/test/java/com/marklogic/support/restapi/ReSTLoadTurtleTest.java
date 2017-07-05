@@ -23,7 +23,7 @@ public class ReSTLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
-    public void testLoadingSmallXTurtleFile() {
+    void testLoadingSmallXTurtleFile() {
         ClientResponse res = assertTimeoutPreemptively(ofSeconds(2), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/charging-stations-export-20170530-095533.ttl"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after
@@ -54,7 +54,7 @@ public class ReSTLoadTurtleTest {
     @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 51MB Turtle file (history.ttl)")
-    public void testLoadingTurtleFile() {
+    void testLoadingTurtleFile() {
         ClientResponse res = assertTimeoutPreemptively(ofSeconds(55), () -> MarkLogicReSTApiClientProvider.createPostForTurtle("turtle/history.ttl"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after

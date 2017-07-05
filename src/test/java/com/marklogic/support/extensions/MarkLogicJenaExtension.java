@@ -22,13 +22,13 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
     public static MarkLogicDatasetGraph DSG = null;
 
     @Override
-    public void afterAll(ContainerExtensionContext context) throws Exception {
+    public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Jena Client (AFTER ALL TESTS) ■");
     }
 
     @Override
-    public void afterTestExecution(TestExtensionContext context) throws Exception {
+    public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER TEST) :: Clearing all triples", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic Jena Client (AFTER) ■ %s ■■", context.getDisplayName()));
         SPARQLUtils.deleteAllTriples(DSG);
@@ -38,7 +38,7 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
     }
 
     @Override
-    public void beforeAll(ContainerExtensionContext context) throws Exception {
+    public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Jena Client (BEFORE ALL TESTS) ■");
         /*DSG = MarkLogicDatasetGraphFactory
@@ -48,7 +48,7 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
     }
 
     @Override
-    public void beforeTestExecution(TestExtensionContext context) throws Exception {
+    public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic Jena Client (BEFORE) ■ %s ■■", context.getDisplayName()));
         DSG = MarkLogicDatasetGraphFactory
