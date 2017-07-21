@@ -8,7 +8,6 @@ import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
@@ -24,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 class SesameLoadNTriplesTest {
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 506Kb NT file (ron.nt)")
     public void testLoadingSmallNtFile() throws RepositoryException, IOException, RDFParseException {
@@ -37,7 +35,6 @@ class SesameLoadNTriplesTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 801Kb NT file (rmn.nt)")
     public void testLoadingAnotherSmallNtFile() throws RepositoryException, IOException, RDFParseException {
@@ -50,7 +47,6 @@ class SesameLoadNTriplesTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 11.8MB NT file (dbpedia60k.nt)")
     public void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
@@ -63,7 +59,6 @@ class SesameLoadNTriplesTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 18.2MB NT file (ron-data.nt)")
     public void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
@@ -76,7 +71,6 @@ class SesameLoadNTriplesTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 18.2MB NT file (rmn-data.nt)")
     public void testLoadingAnotherMedNtFile() throws RepositoryException, IOException, RDFParseException {
@@ -89,7 +83,6 @@ class SesameLoadNTriplesTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 96.4MB NT file (2013-02-14-panlex-dump.nt)")
     public void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {

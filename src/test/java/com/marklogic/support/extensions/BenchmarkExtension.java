@@ -2,7 +2,7 @@ package com.marklogic.support.extensions;
 
 /**
  * Tutorial and code for the JUnit 5 Benchmark Extension are from here:
- *
+ * <p>
  * https://github.com/CodeFX-org/demo-junit-5/blob/master/src/main/java/org/codefx/demo/junit5/BenchmarkExtension.java
  */
 

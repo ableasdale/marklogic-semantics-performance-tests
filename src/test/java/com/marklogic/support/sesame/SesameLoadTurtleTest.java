@@ -6,7 +6,10 @@ import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
@@ -29,7 +32,6 @@ public class SesameLoadTurtleTest {
     //private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
     void testLoadingSmallXTurtleFile() throws RepositoryException, IOException, RDFParseException {
@@ -40,7 +42,6 @@ public class SesameLoadTurtleTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 779K Turtle file (units.ttl)")
     void testLoadingSmallTurtleFile() throws RepositoryException, IOException, RDFParseException {
@@ -51,7 +52,6 @@ public class SesameLoadTurtleTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 3.3MB Turtle file (unescothes.ttl)")
     void testLoadingMediumSizeTurtleFile() throws RepositoryException, IOException, RDFParseException {
@@ -63,7 +63,6 @@ public class SesameLoadTurtleTest {
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 51MB Turtle file (history.ttl)")
     void testLoadingLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
@@ -75,7 +74,6 @@ public class SesameLoadTurtleTest {
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {

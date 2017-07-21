@@ -4,7 +4,10 @@ import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicReST;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import com.sun.jersey.api.client.ClientResponse;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.Assert.assertEquals;
@@ -19,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class ReSTLoadTurtleTest {
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
     void testLoadingSmallXTurtleFile() {
@@ -29,7 +31,6 @@ public class ReSTLoadTurtleTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 779K Turtle file (units.ttl)")
     void testLoadingSmallTurtleFile() {
@@ -39,7 +40,6 @@ public class ReSTLoadTurtleTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 3.3MB Turtle file (unescothes.ttl)")
     void testLoadingMediumSizeTurtleFile() {
@@ -50,7 +50,6 @@ public class ReSTLoadTurtleTest {
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 51MB Turtle file (history.ttl)")
     void testLoadingTurtleFile() {
@@ -61,7 +60,6 @@ public class ReSTLoadTurtleTest {
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() {

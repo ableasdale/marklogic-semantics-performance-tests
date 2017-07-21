@@ -6,7 +6,10 @@ import com.marklogic.support.annotations.MarkLogicJena;
 import com.marklogic.support.extensions.MarkLogicJenaExtension;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class JenaLoadTurtleTest {
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
     public void testLoadingSmallXTurtleFile() {
@@ -30,7 +32,6 @@ public class JenaLoadTurtleTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 779K Turtle file (units.ttl)")
     public void testLoadingSmallTurtleFile() {
@@ -39,7 +40,6 @@ public class JenaLoadTurtleTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 3.3MB Turtle file (unescothes.ttl)")
     public void testLoadingMediumSizeTurtleFile() {
@@ -49,7 +49,6 @@ public class JenaLoadTurtleTest {
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 51MB Turtle file (history.ttl)")
     void testLoadingLargeTurtleFile() {
@@ -63,7 +62,6 @@ public class JenaLoadTurtleTest {
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() {

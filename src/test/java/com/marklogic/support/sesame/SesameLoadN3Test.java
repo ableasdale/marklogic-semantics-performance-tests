@@ -8,7 +8,6 @@ import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
@@ -29,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class SesameLoadN3Test {
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 39.5MB Notation 3 (N3) file (event-dump.n3)")
     public void testLoadingMediumN3File() throws RepositoryException, IOException, RDFParseException {
@@ -42,7 +40,6 @@ public class SesameLoadN3Test {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 57.8MB Notation 3 (N3) file (sec.n3)")
     public void testLoadingLargeN3File() throws RepositoryException, IOException, RDFParseException {

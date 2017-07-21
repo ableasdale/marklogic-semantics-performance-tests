@@ -4,7 +4,6 @@ import com.marklogic.semantics.jena.MarkLogicDatasetGraph;
 import com.marklogic.semantics.jena.MarkLogicDatasetGraphFactory;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
-import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

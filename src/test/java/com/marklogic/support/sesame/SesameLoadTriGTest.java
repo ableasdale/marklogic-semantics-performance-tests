@@ -8,7 +8,6 @@ import com.marklogic.support.annotations.MarkLogicSesame;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
@@ -27,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class SesameLoadTriGTest {
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 502Kb TriG file (charging-stations-export-20170530-095530.trig)")
     public void testLoadingSmallTriGFile() throws RepositoryException, IOException, RDFParseException {

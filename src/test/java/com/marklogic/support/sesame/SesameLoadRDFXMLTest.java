@@ -13,7 +13,6 @@ import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFParseException;
@@ -30,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 class SesameLoadRDFXMLTest {
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 175KB RDF/XML file (countries.rdf)")
     public void testLoadingSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
@@ -43,7 +41,6 @@ class SesameLoadRDFXMLTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 189KB RDF/XML file (currencies.rdf)")
     public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
@@ -56,7 +53,6 @@ class SesameLoadRDFXMLTest {
     }
 
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 21.8MB RDF/XML file (peel.rdf)")
     public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
@@ -70,7 +66,6 @@ class SesameLoadRDFXMLTest {
 
 
     @Benchmark
-    @Test
     @Disabled("file can't be parsed right now - need to figure out why...")
     // -- XDMP-BASEURI (err:FOER0000): Undeclared base URI . See the MarkLogic server error log for further detail.
     @RepeatedTest(2)

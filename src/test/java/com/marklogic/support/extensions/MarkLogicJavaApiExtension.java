@@ -1,10 +1,6 @@
 package com.marklogic.support.extensions;
 
-import com.marklogic.client.DatabaseClient;
-import com.marklogic.client.document.DocumentManager;
 import com.marklogic.client.util.RequestLogger;
-import com.marklogic.support.providers.MarkLogicJavaClientProvider;
-import org.apache.jena.base.Sys;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

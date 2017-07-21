@@ -8,7 +8,9 @@ import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicJavaClient;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 
 import static com.marklogic.support.Utils.getFileHandleForTurtleFile;
 import static java.time.Duration.ofSeconds;
@@ -31,19 +33,17 @@ public class JavaClientTurtleTest {
         assertTimeoutPreemptively(ofSeconds(10),
      */
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
     public void testLoadingSmallXTurtleFile() {
 
         assertTimeoutPreemptively(ofSeconds(70), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write("myExample/graphURI", getFileHandleForTurtleFile("turtle/charging-stations-export-20170530-095533.ttl")));
-         assertEquals(8900, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
+        assertEquals(8900, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
     }
 
 
     @Disabled
     @Benchmark
-    @Test
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 51MB Turtle file (history.ttl)")
     public void testLoadingLargeTurtleFile() {
