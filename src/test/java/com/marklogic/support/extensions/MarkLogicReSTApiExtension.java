@@ -1,6 +1,8 @@
 package com.marklogic.support.extensions;
 
+import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
+import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,7 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
     public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (AFTER ALL TESTS) ■");
+        SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
 
     }
 
@@ -27,6 +30,8 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
     public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER TEST) :: Clearing all triples", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic ReST API Client (AFTER) ■ %s ■■", context.getDisplayName()));
+        // TODO - fix this!
+        SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
     }
 
     @Override

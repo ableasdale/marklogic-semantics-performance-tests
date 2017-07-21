@@ -8,9 +8,7 @@ import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicJavaClient;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.marklogic.support.Utils.getFileHandleForTurtleFile;
 import static java.time.Duration.ofSeconds;
@@ -43,6 +41,7 @@ public class JavaClientTurtleTest {
     }
 
 
+    @Disabled
     @Benchmark
     @Test
     @RepeatedTest(2)

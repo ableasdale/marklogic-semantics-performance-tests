@@ -6,9 +6,7 @@ import com.marklogic.support.annotations.MarkLogicJena;
 import com.marklogic.support.extensions.MarkLogicJenaExtension;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 /**
  * Created by ableasdale on 29/05/2017.
  */
+@Tag("turtle")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the Jena Client API")
 public class JenaLoadTurtleTest {
@@ -48,6 +47,7 @@ public class JenaLoadTurtleTest {
         assertEquals(75202, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
     }
 
+    @Disabled
     @Benchmark
     @Test
     @RepeatedTest(2)
@@ -61,6 +61,7 @@ public class JenaLoadTurtleTest {
         assertEquals(391551, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
     }
 
+    @Disabled
     @Benchmark
     @Test
     @RepeatedTest(2)

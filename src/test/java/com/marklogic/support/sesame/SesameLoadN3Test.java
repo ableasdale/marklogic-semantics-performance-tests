@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 26/05/2017.
  */
 
+
 @MarkLogicSesame
 @DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the Sesame Repository API")
 public class SesameLoadN3Test {
