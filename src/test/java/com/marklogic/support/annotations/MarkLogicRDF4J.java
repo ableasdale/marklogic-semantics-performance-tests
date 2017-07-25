@@ -1,6 +1,6 @@
 package com.marklogic.support.annotations;
 
-import com.marklogic.support.extensions.MarkLogicSesameExtension;
+import com.marklogic.support.extensions.MarkLogicRDF4JExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.Retention;
@@ -14,6 +14,6 @@ import static java.lang.annotation.ElementType.*;
  */
 @Target({TYPE, METHOD, ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(MarkLogicSesameExtension.class)
-public @interface MarkLogicSesame {
+@ExtendWith(MarkLogicRDF4JExtension.class)
+public @interface MarkLogicRDF4J {
 }

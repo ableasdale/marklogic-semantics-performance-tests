@@ -1,10 +1,10 @@
-package com.marklogic.support.sesame;
+package com.marklogic.support.rdf4j;
 
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
-import com.marklogic.support.annotations.MarkLogicSesame;
+import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.eclipse.rdf4j.repository.RepositoryException;
@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  */
 
 @Tag("nquads3")
-@MarkLogicSesame
+@MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading N-Quad (.nq) files using the Sesame Repository API")
-class SesameLoadNQuadTest {
+class RDF4JLoadNQuadTest {
 
     //private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

@@ -1,4 +1,4 @@
-package com.marklogic.support.sesame;
+package com.marklogic.support.rdf4j;
 
 /**
  * Created by ableasdale on 26/05/2017.
@@ -8,7 +8,7 @@ import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
-import com.marklogic.support.annotations.MarkLogicSesame;
+import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -26,9 +26,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @Tag("ignore")
-@MarkLogicSesame
+@MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the Sesame Repository API")
-class SesameLoadRDFXMLTest {
+class RDF4JLoadRDFXMLTest {
 
     @Benchmark
     @RepeatedTest(2)

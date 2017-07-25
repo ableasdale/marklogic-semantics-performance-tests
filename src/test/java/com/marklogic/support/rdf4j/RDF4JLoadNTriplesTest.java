@@ -1,10 +1,10 @@
-package com.marklogic.support.sesame;
+package com.marklogic.support.rdf4j;
 
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
-import com.marklogic.support.annotations.MarkLogicSesame;
+import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -20,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @Tag("ignore")
-@MarkLogicSesame
+@MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading N-Triples (.nt) files using the Sesame Repository API")
-class SesameLoadNTriplesTest {
+class RDF4JLoadNTriplesTest {
 
     @Benchmark
     @RepeatedTest(2)
