@@ -22,7 +22,7 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
     public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (AFTER ALL TESTS) ■");
-        SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
+        //SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
 
     }
 
@@ -31,7 +31,7 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
         LOG.debug(String.format("%s (AFTER TEST) :: Clearing all triples", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic ReST API Client (AFTER) ■ %s ■■", context.getDisplayName()));
         // TODO - fix this!
-        SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
+        //SPARQLUtils.deleteAllTriples(MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection());
     }
 
     @Override
@@ -44,6 +44,6 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
     @Override
     public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
-        LOG.info(String.format(" ■■ Sesame ReST API Client (BEFORE) ■ %s ■■", context.getDisplayName()));
+        LOG.info(String.format(" ■■ MarkLogic ReST API Client (BEFORE) ■ %s ■■", context.getDisplayName()));
     }
 }

@@ -54,9 +54,9 @@ junitPlatform {
         }
         tags {
             //include 'turtle'
-            include 'nquad2'
+            include 'nquads'
             // include 'fast'
-            //exclude 'slow'
+            // exclude 'ignore'
         }
         // includeClassNamePattern '.*Test'
     }

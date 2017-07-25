@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 28/05/2017.
  */
 
-@Tag("turtle")
+@Tag("ignore")
 @MarkLogicSesame
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the Sesame Repository API")
 public class SesameLoadTurtleTest {

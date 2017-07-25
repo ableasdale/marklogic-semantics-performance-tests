@@ -42,7 +42,7 @@ public class MarkLogicReSTApiClientProvider {
         WebResource wr = getConfiguredInstance().resource(DEFAULT_GRAPH);
         try {
             return wr.type(mimetype)
-                    .post(ClientResponse.class, new String(Files.readAllBytes(Paths.get(Configuration.RESOURCES+filename))));
+                    .post(ClientResponse.class, new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename)))));
         } catch (IOException e) {
             e.printStackTrace();
         }

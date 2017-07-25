@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 26/05/2017.
  */
 
-@Tag("nquad")
+@Tag("ignore")
 @MarkLogicSesame
 @DisplayName("Benchmarking performance when loading N-Quad (.nq) files using the Sesame Repository API")
 public class SesameLoadNQuadTest {
