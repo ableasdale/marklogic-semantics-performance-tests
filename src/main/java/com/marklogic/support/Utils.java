@@ -40,4 +40,8 @@ public class Utils {
                         .withMimetype(RDFMimeTypes.TURTLE);
     }
 
+    public static FileHandle getFileHandleForNQuadsFile(String name) {
+        return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
+                .withMimetype(RDFMimeTypes.NQUADS);
+    }
 }

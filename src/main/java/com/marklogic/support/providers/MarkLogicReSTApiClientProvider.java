@@ -1,12 +1,10 @@
 package com.marklogic.support.providers;
 
 import com.marklogic.support.Configuration;
-
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.filter.HTTPDigestAuthFilter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,7 +51,7 @@ public class MarkLogicReSTApiClientProvider {
     public static ClientResponse createGetForValidationCheck() {
         WebResource wr = getConfiguredInstance().resource(LATEST_REST_APIS);
         ClientResponse response = wr.type("application/json").get(ClientResponse.class);
-        LOG.debug("Client Response Status: "+ response.getStatus());
+        LOG.debug(String.format("Client Response Status: %d", response.getStatus()));
         return response;
     }
 
@@ -66,13 +64,21 @@ public class MarkLogicReSTApiClientProvider {
         return Integer.parseInt(total.split(System.lineSeparator())[1]);
     }
 
+    public static int getGraphCount() {
+        WebResource wr = getConfiguredInstance().resource(SPARQL_QUERY);
+        ClientResponse response = wr.type("application/sparql-query").header("Accept", "text/csv").post(ClientResponse.class, "select (count(?g) as ?count) { graph ?g {} }");
+        String total = response.getEntity(String.class);
+        LOG.debug(String.format("Client Response Status: %d || Client Response in full: %s", response.getStatus(), total));
+        //LOG.info("TOTAL: +"+Integer.parseInt(total.split(System.lineSeparator())[1]));
+        return Integer.parseInt(total.split(System.lineSeparator())[1]);
+    }
+
     // TODO - not quite right!
     public static ClientResponse getTripleCountAsEval() {
         WebResource wr = getConfiguredInstance().resource(EVAL);
         ClientResponse response = wr.type("application/x-www-form-urlencoded").header("Accept", "multipart/mixed; boundary=BOUNDARY").post(ClientResponse.class, "sem:sparql(select (count(*) as ?total) where { ?s ?p ?o . })");
         LOG.debug("Client Response Status: "+ response.getStatus());
         //response.getEntity().getContent();
-
         LOG.debug("Client Response in full: "+response.getEntity(String.class));
         return response;
     }
@@ -84,7 +90,7 @@ public class MarkLogicReSTApiClientProvider {
         try {
             ClientResponse response = wr.type(mimetype)
                     .post(ClientResponse.class, new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename)))));
-            LOG.info("Client Response Status: "+response.getStatus());
+            LOG.debug(String.format("Client Response Status: %d", response.getStatus()));
             return response;
         } catch (IOException e) {
             LOG.error("Exception caught creating resource: ", e);

@@ -54,7 +54,7 @@ junitPlatform {
         }
         tags {
             //include 'turtle'
-            include 'nquads'
+            include 'nquads2'
             // include 'fast'
             // exclude 'ignore'
         }

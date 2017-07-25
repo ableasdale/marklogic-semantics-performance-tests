@@ -29,6 +29,7 @@ public class SPARQLUtils {
    // private static final String SELECT_ALL_SHORT = "select count(*) where { ?s ?p ?o . }";
     private static final String SELECT_ALL = "select (count(*) as ?total) where { ?s ?p ?o . }";
     private static final String CLEAR_ALL = "CLEAR ALL";
+    private static final String GRAPH_QUERY = "select (count(?g) as ?count) { graph ?g {} }";
 
     public static void deleteAllTriples(MarkLogicRepositoryConnection conn) {
         try {
@@ -104,7 +105,6 @@ public class SPARQLUtils {
      */
     public static int countAllTriples(DatabaseClient client) {
         SPARQLQueryManager sparqlMgr = client.newSPARQLQueryManager();
-
         // TODO - works for now; but there *MUST* be a better way to do this??
         // .newRowManager() perhaps?
         String total = sparqlMgr.executeSelect(

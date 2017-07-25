@@ -22,7 +22,6 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
         LOG.info("■ MarkLogic ReST API Client (AFTER ALL TESTS) ■");
         assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().getStatus());
         assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
-
     }
 
     @Override
