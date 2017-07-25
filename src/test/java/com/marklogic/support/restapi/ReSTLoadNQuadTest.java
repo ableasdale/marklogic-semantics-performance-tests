@@ -20,7 +20,7 @@ public class ReSTLoadNQuadTest {
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load to load a 20.5MB NQuad file (1_86286.nq)")
     void testLoadingSampleOne() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(20), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/1_86286.nq"));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/1_86286.nq"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after
     }
@@ -29,7 +29,7 @@ public class ReSTLoadNQuadTest {
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 3.3MB NQuad file (2_12770.nq)")
     void testLoadingSampleTwo() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(10), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/2_12770.nq"));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/2_12770.nq"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after
     }
@@ -38,8 +38,18 @@ public class ReSTLoadNQuadTest {
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 13.9MB NQuad file (3_54187.nq)")
     void testLoadingSampleThree() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(10), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/3_54187.nq"));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/3_54187.nq"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after
     }
+
+    @Benchmark
+    @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 35.3MB NQuad file (4_138495.nq)")
+    void testLoadingSampleFour() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/4_138495.nq"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
+    }
+
 }
