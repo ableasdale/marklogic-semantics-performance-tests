@@ -39,17 +39,28 @@ public class MarkLogicReSTApiClientProvider {
         return client;
     }
 
+    public static ClientResponse createPostForClearingDatabase() {
+        WebResource wr = getConfiguredInstance().resource(String.format("http://localhost:8002/manage/v2/forests/%s", Configuration.FOREST));
+        ClientResponse response = wr.type("application/x-www-form-urlencoded").post(ClientResponse.class, "state=clear");
+        LOG.info("Cleared Database :: Client Response Status: "+ response.getStatus());
+        return response;
+    }
+
     public static ClientResponse createGetForValidationCheck() {
         WebResource wr = getConfiguredInstance().resource(LATEST_REST_APIS);
-        return wr.type("application/json").get(ClientResponse.class);
+        ClientResponse response = wr.type("application/json").get(ClientResponse.class);
+        LOG.info("Client Response Status: "+ response.getStatus());
+        return response;
     }
 
     public static ClientResponse createPost(String filename, String mimetype) {
         WebResource wr = getConfiguredInstance().resource(UNSPECIFIED_GRAPH);
         LOG.info(String.format("URI: %s", wr.getURI()));
         try {
-            return wr.type(mimetype)
+            ClientResponse response = wr.type(mimetype)
                     .post(ClientResponse.class, new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename)))));
+            LOG.info("Client Response Status: "+response.getStatus());
+            return response;
         } catch (IOException e) {
             LOG.error("Exception caught creating resource: ", e);
         }
@@ -65,6 +76,15 @@ public class MarkLogicReSTApiClientProvider {
     }
 
     /*
+
+    $ curl --anyauth --user user:password -X POST -i \
+    -d "state=clear" \
+    -H "Content-type: application/x-www-form-urlencoded" \
+    http://localhost:8002/manage/v2/forests/rest-example-1
+
+    http://localhost:8002/manage/v2/databases/rest-example
+
+
     createPost
     "application/x-turtle"
 

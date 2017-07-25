@@ -47,7 +47,25 @@ public class ReSTLoadNQuadTest {
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 35.3MB NQuad file (4_138495.nq)")
     void testLoadingSampleFour() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/4_138495.nq"));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(35), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/4_138495.nq"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
+    }
+
+    @Benchmark
+    @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 16MB NQuad file (5_63578.nq)")
+    void testLoadingSampleFive() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/5_63578.nq"));
+        assertEquals(204, res.getStatus());
+        // TODO - count triples after
+    }
+
+    @Benchmark
+    @RepeatedTest(2)
+    @DisplayName("Using the ReST API to load a 31.6MB NQuad file (6_125268.nq)")
+    void testLoadingSampleSix() {
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(35), () -> MarkLogicReSTApiClientProvider.createPostForNQuads("nquads/6_125268.nq"));
         assertEquals(204, res.getStatus());
         // TODO - count triples after
     }
