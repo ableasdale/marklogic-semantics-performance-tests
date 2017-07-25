@@ -14,7 +14,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("nquads2")
+@Tag("nquads")
 @MarkLogicJavaClient
 @DisplayName("Benchmarking performance when loading NQuad (.nq) files using the MarkLogic Java Client API")
 class JavaClientNQuadTest {

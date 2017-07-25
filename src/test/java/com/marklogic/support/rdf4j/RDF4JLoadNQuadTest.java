@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 26/05/2017.
  */
 
-@Tag("nquads3")
+@Tag("nquads")
 @MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading N-Quad (.nq) files using the Sesame Repository API")
 class RDF4JLoadNQuadTest {
@@ -137,7 +137,7 @@ class RDF4JLoadNQuadTest {
 
     @Benchmark
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic RDF4J API to load a 31.6MB NQuad file (6_125268.nq)")
+    @DisplayName("Using the MarkLogic RDF4J API to load a 31.6MB N-Quads file (6_125268.nq)")
     void testLoadingSampleSix() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
