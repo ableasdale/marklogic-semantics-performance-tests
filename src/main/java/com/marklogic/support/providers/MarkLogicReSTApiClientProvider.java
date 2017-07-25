@@ -23,6 +23,8 @@ public class MarkLogicReSTApiClientProvider {
     private static URI LATEST_REST_APIS = UriBuilder.fromUri(String.format("http://%s:%d/LATEST/rest-apis", Configuration.HOST, 8002)).build();
 
     private static String TURTLE_MIMETYPE = "application/x-turtle";
+    private static String NQUAD_MIMETYPE = "application/n-quads";
+
 
     public static Client getConfiguredInstance() {
         Client client = Client.create();
@@ -36,6 +38,7 @@ public class MarkLogicReSTApiClientProvider {
     }
 
     public static ClientResponse createPost(String filename, String mimetype) {
+        System.out.println("HERE");
         WebResource wr = getConfiguredInstance().resource(DEFAULT_GRAPH);
         try {
             return wr.type(mimetype)
@@ -48,6 +51,10 @@ public class MarkLogicReSTApiClientProvider {
 
     public static ClientResponse createPostForTurtle(String filename) {
         return createPost(filename, TURTLE_MIMETYPE);
+    }
+
+    public static ClientResponse createPostForNQuads(String filename) {
+        return createPost(filename, NQUAD_MIMETYPE);
     }
 
     /*

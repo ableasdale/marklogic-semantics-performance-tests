@@ -54,7 +54,7 @@ junitPlatform {
         }
         tags {
             //include 'turtle'
-            include 'nquad'
+            include 'nquad2'
             // include 'fast'
             //exclude 'slow'
         }
@@ -65,5 +65,5 @@ junitPlatform {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.0.1'
 }

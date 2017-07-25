@@ -6,7 +6,7 @@ package com.marklogic.support;
 public class Configuration {
 
     public static final String HOST = "0.0.0.0";
-    public static final int PORT = 8003;
+    public static final int PORT = 8000;
     public static final String USERNAME = "q";
     public static final String PASSWORD = "q";
     public static final String AUTH = "DIGEST";

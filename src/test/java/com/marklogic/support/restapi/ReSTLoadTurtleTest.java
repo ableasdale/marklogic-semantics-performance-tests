@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 /**
  * Created by ableasdale on 06/06/2017.
  */
-@Tag("turtle")
+@Tag("turtle2")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the ReST API endpoints")
 public class ReSTLoadTurtleTest {
