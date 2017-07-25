@@ -41,6 +41,7 @@ class SesameLoadNQuadTest {
         });
         assertEquals(163774, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
     @Benchmark
@@ -53,6 +54,7 @@ class SesameLoadNQuadTest {
         });
         assertEquals(665161, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
     @Benchmark
@@ -63,8 +65,9 @@ class SesameLoadNQuadTest {
         assertTimeoutPreemptively(ofSeconds(80), () -> {
             conn.add(Utils.getFileReader("nquads/toDelete.nq"), "", RDFFormat.NQUADS);
         });
-        assertEquals(665161, SPARQLUtils.countAllTriples(conn));
+        assertEquals(116291, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(12003, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
     @Benchmark
