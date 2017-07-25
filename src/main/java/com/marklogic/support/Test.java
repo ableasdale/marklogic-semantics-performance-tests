@@ -1,10 +1,10 @@
 package com.marklogic.support;
 
-import com.marklogic.semantics.sesame.MarkLogicRepository;
-import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.rio.RDFFormat;
-import org.openrdf.rio.RDFParseException;
+import com.marklogic.semantics.rdf4j.MarkLogicRepository;
+import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

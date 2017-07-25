@@ -1,9 +1,8 @@
 package com.marklogic.support.providers;
 
-import com.marklogic.semantics.sesame.MarkLogicRepository;
-import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
-import com.marklogic.support.Configuration;
-import org.openrdf.repository.RepositoryException;
+import com.marklogic.semantics.rdf4j.MarkLogicRepository;
+import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,11 +18,10 @@ public class MarkLogicSesameRepositoryProvider {
     private MarkLogicRepository markLogicSesameApiConnection;
 
     private MarkLogicSesameRepositoryProvider() {
-        LOG.info("Creating MarkLogic MarkLogicSesameRepositoryProvider");
-        markLogicSesameApiConnection = new MarkLogicRepository(Configuration.HOST, Configuration.PORT, Configuration.USERNAME, Configuration.PASSWORD, Configuration.AUTH);
+        markLogicSesameApiConnection = new MarkLogicRepository(MarkLogicJavaClientProvider.getClient());
         try {
             markLogicSesameApiConnection.initialize();
-            LOG.info("MarkLogicSesameRepositoryProvider should now be set up");
+            LOG.debug("MarkLogicSesameRepositoryProvider should now be set up");
         } catch (RepositoryException e) {
             LOG.error("Unable to connect to Sesame API", e);
         }
@@ -32,7 +30,6 @@ public class MarkLogicSesameRepositoryProvider {
     private static class LazyHolder {
         static final MarkLogicSesameRepositoryProvider INSTANCE = new MarkLogicSesameRepositoryProvider();
     }
-
 
     private static MarkLogicSesameRepositoryProvider getInstance() {
         return LazyHolder.INSTANCE;

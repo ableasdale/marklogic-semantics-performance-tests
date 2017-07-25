@@ -1,17 +1,24 @@
 package com.marklogic.support.sesame;
 
-import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
+import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicSesame;
+import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
-import org.junit.jupiter.api.*;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.rio.RDFFormat;
-import org.openrdf.rio.RDFParseException;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFParseException;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,10 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 26/05/2017.
  */
 
-@Tag("ignore")
+@Tag("nquads3")
 @MarkLogicSesame
 @DisplayName("Benchmarking performance when loading N-Quad (.nq) files using the Sesame Repository API")
 public class SesameLoadNQuadTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Disabled
     @Benchmark
@@ -53,6 +62,7 @@ public class SesameLoadNQuadTest {
     }
 
     // Specific tests below:
+
     @Disabled
     @Benchmark
     @RepeatedTest(2)
@@ -79,23 +89,19 @@ public class SesameLoadNQuadTest {
         conn.close();
     }
 
-    //@Disabled
-
-    //@Test
-    @Disabled
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load Sample NQuad file 2 (2_12770.nq)")
     public void testLoadingSampleTwo() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
-        assertTimeoutPreemptively(ofSeconds(900), () -> {
+        assertTimeoutPreemptively(ofSeconds(60), () -> {
             conn.add(Utils.getFileReader("nquads/2_12770.nq"), "", RDFFormat.NQUADS);
         });
-        assertEquals(12770, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(12770, MarkLogicReSTApiClientProvider.getTripleCount());
+        assertEquals(2905, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
-    @Disabled
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load Sample NQuad file 3 (3_54187.nq)")
@@ -106,6 +112,7 @@ public class SesameLoadNQuadTest {
         });
         assertEquals(54187, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(12157, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
     @Disabled

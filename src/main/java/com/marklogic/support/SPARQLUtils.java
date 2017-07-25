@@ -5,8 +5,8 @@ import com.marklogic.client.io.StringHandle;
 import com.marklogic.client.semantics.SPARQLMimeTypes;
 import com.marklogic.client.semantics.SPARQLQueryManager;
 import com.marklogic.semantics.jena.MarkLogicDatasetGraph;
-import com.marklogic.semantics.sesame.MarkLogicRepositoryConnection;
-import com.marklogic.semantics.sesame.query.MarkLogicTupleQuery;
+import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
+import com.marklogic.semantics.rdf4j.query.MarkLogicTupleQuery;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QuerySolution;
@@ -15,11 +15,11 @@ import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
-import org.openrdf.query.MalformedQueryException;
-import org.openrdf.query.QueryEvaluationException;
-import org.openrdf.query.TupleQueryResult;
-import org.openrdf.query.UpdateExecutionException;
-import org.openrdf.repository.RepositoryException;
+import org.eclipse.rdf4j.query.MalformedQueryException;
+import org.eclipse.rdf4j.query.QueryEvaluationException;
+import org.eclipse.rdf4j.query.TupleQueryResult;
+import org.eclipse.rdf4j.query.UpdateExecutionException;
+import org.eclipse.rdf4j.repository.RepositoryException;
 
 /**
  * Created by ableasdale on 01/06/2017.
