@@ -7,10 +7,6 @@ import com.sun.jersey.api.client.ClientResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.Assert.assertEquals;
@@ -19,9 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("nquads")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading N-Quads (.nq) files using the ReST API endpoint")
-class ReSTLoadNQuadTest {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+class ReSTLoadNQuadsTest {
 
     @Benchmark
     @RepeatedTest(2)

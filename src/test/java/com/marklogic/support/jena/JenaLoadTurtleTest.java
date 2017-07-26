@@ -21,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("turtle")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the Jena Client API")
-public class JenaLoadTurtleTest {
+class JenaLoadTurtleTest {
 
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
-    public void testLoadingSmallXTurtleFile() {
+    void testLoadingSmallXTurtleFile() {
         assertTimeoutPreemptively(ofSeconds(10), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/turtle/charging-stations-export-20170530-095533.ttl", Lang.TURTLE));
         assertEquals(8900, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
     }
@@ -34,7 +34,7 @@ public class JenaLoadTurtleTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 779K Turtle file (units.ttl)")
-    public void testLoadingSmallTurtleFile() {
+    void testLoadingSmallTurtleFile() {
         assertTimeoutPreemptively(ofSeconds(18), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/turtle/units.ttl", Lang.TURTLE));
         assertEquals(23485, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
     }
@@ -42,7 +42,7 @@ public class JenaLoadTurtleTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 3.3MB Turtle file (unescothes.ttl)")
-    public void testLoadingMediumSizeTurtleFile() {
+    void testLoadingMediumSizeTurtleFile() {
         assertTimeoutPreemptively(ofSeconds(60), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/turtle/unescothes.ttl", Lang.TURTLE));
         assertEquals(75202, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
     }

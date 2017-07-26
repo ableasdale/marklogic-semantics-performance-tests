@@ -5,7 +5,7 @@ import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
-import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -37,7 +37,7 @@ public class RDF4JLoadTriXTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 2.1MB TriX file (charging-stations-export-20170530-095413.xml)")
     public void testLoadingSmallTriXFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofMillis(30000), () -> {
             conn.add(Utils.getFileReader("trix/charging-stations-export-20170530-095413.xml"), "", RDFFormat.TRIX);
         });

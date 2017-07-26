@@ -5,7 +5,7 @@ import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
-import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
@@ -28,7 +28,7 @@ class RDF4JLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 506Kb NT file (ron.nt)")
     public void testLoadingSmallNtFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
 
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("nt/ron.nt"), "", RDFFormat.NTRIPLES);
@@ -41,7 +41,7 @@ class RDF4JLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 801Kb NT file (rmn.nt)")
     public void testLoadingAnotherSmallNtFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("nt/rmn.nt"), "", RDFFormat.NTRIPLES);
         });
@@ -53,7 +53,7 @@ class RDF4JLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 11.8MB NT file (dbpedia60k.nt)")
     public void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/dbpedia60k.nt"), "", RDFFormat.NTRIPLES);
         });
@@ -65,7 +65,7 @@ class RDF4JLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load an 18.2MB NT file (ron-data.nt)")
     public void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/ron-data.nt"), "", RDFFormat.NTRIPLES);
         });
@@ -77,7 +77,7 @@ class RDF4JLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 18.2MB NT file (rmn-data.nt)")
     public void testLoadingAnotherMedNtFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/rmn-data.nt"), "", RDFFormat.NTRIPLES);
         });
@@ -89,7 +89,7 @@ class RDF4JLoadNTriplesTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 96.4MB NT file (2013-02-14-panlex-dump.nt)")
     public void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(50), () -> {
             conn.add(Utils.getFileReader("nt/2013-02-14-panlex-dump.nt"), "", RDFFormat.NTRIPLES);
         });

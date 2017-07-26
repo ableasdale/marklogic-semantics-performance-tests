@@ -5,7 +5,7 @@ import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
-import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
@@ -32,7 +32,7 @@ public class RDF4JLoadTriGTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 502Kb TriG file (charging-stations-export-20170530-095530.trig)")
     public void testLoadingSmallTriGFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofMillis(3000), () -> {
             conn.add(Utils.getFileReader("trig/charging-stations-export-20170530-095530.trig"), "", RDFFormat.TRIG);
         });

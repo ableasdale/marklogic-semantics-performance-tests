@@ -5,7 +5,7 @@ import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
-import com.marklogic.support.providers.MarkLogicSesameRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -35,7 +35,7 @@ public class RDF4JLoadTurtleTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
     void testLoadingSmallXTurtleFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> conn.add(Utils.getFileReader("turtle/charging-stations-export-20170530-095533.ttl"), "", RDFFormat.TURTLE));
         assertEquals(8900, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -45,7 +45,7 @@ public class RDF4JLoadTurtleTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 779K Turtle file (units.ttl)")
     void testLoadingSmallTurtleFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE));
         assertEquals(23485, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -55,7 +55,7 @@ public class RDF4JLoadTurtleTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 3.3MB Turtle file (unescothes.ttl)")
     void testLoadingMediumSizeTurtleFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> conn.add(Utils.getFileReader("turtle/unescothes.ttl"), "", RDFFormat.TURTLE));
         assertEquals(75202, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -66,7 +66,7 @@ public class RDF4JLoadTurtleTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 51MB Turtle file (history.ttl)")
     void testLoadingLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(50), () -> conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE));
         assertEquals(391551, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -77,7 +77,7 @@ public class RDF4JLoadTurtleTest {
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic Sesame API to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicSesameRepositoryProvider.getMarkLogicRepositoryConnection();
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
 
         assertTimeoutPreemptively(ofSeconds(95), () -> conn.add(Utils.getFileReader("turtle/fulldump.ttl"), "", RDFFormat.TURTLE));
 
