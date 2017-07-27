@@ -34,7 +34,7 @@ class RDF4JLoadNQuadsTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 41.8MB N-Quads file (sider-indications_raw.nq)")
-    void testLoadingMediumNQuadsFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingMediumNQuadsFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(20), () -> {
             conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
@@ -47,7 +47,7 @@ class RDF4JLoadNQuadsTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 262.1MB N-Quads file (sider-label_mapping.nq)")
-    void testLoadingLargeNQuadsFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingLargeNQuadsFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
             conn.add(Utils.getFileReader("nquads/sider-label_mapping.nq"), "", RDFFormat.NQUADS);

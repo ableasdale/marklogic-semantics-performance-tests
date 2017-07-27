@@ -10,13 +10,13 @@ import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFParseException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
-import org.eclipse.rdf4j.repository.RepositoryException;
-import org.eclipse.rdf4j.rio.RDFFormat;
-import org.eclipse.rdf4j.rio.RDFParseException;
 
 import java.io.IOException;
 
@@ -32,7 +32,7 @@ class RDF4JLoadRDFXMLTest {
 
     @Benchmark
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 175KB RDF/XML file (countries.rdf)")
+    @DisplayName("Using the MarkLogic RDF4J API to load a 175KB RDF/XML file (countries.rdf)")
     public void testLoadingSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
@@ -44,7 +44,7 @@ class RDF4JLoadRDFXMLTest {
 
     @Benchmark
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 189KB RDF/XML file (currencies.rdf)")
+    @DisplayName("Using the MarkLogic RDF4J API to load a 189KB RDF/XML file (currencies.rdf)")
     public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
@@ -56,7 +56,7 @@ class RDF4JLoadRDFXMLTest {
 
     @Benchmark
     @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 21.8MB RDF/XML file (peel.rdf)")
+    @DisplayName("Using the MarkLogic RDF4J API to load a 21.8MB RDF/XML file (peel.rdf)")
     public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(45), () -> {
