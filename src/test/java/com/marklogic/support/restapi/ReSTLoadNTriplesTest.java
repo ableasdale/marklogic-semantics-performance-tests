@@ -12,7 +12,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("ntriples2")
+@Tag("ntriples")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading N-Triples (.nt) files using the ReST API endpoint")
 class ReSTLoadNTriplesTest {

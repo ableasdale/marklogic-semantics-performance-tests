@@ -23,10 +23,6 @@ public class Utils {
         try {
             File f = new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile());
             FileReader fr = new FileReader(f);
-            /*fr. URL url = FileSizeBench.class
-                    .getResource("FileSizeBench.class");
-            stream = url.openStream();
-            return stream.available(); */
             LOG.info(String.format("File name: %s | File length: %s", f.getName(), FileUtils.byteCountToDisplaySize(f.length())));
             return fr;
         } catch (FileNotFoundException e) {
@@ -43,5 +39,10 @@ public class Utils {
     public static FileHandle getFileHandleForNQuadsFile(String name) {
         return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
                 .withMimetype(RDFMimeTypes.NQUADS);
+    }
+
+    public static FileHandle getFileHandleForNTriplesFile(String name) {
+        return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
+                .withMimetype(RDFMimeTypes.NTRIPLES);
     }
 }
