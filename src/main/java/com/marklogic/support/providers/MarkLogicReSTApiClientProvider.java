@@ -88,19 +88,14 @@ public class MarkLogicReSTApiClientProvider {
     }
 
     private static ClientResponse createPost(String filename, String mimetype, boolean default_graph) {
-        WebResource wr = null;
-        if (default_graph) {
-            wr = getConfiguredInstance().resource(DEFAULT_GRAPH);
-        } else {
-            wr = getConfiguredInstance().resource(UNSPECIFIED_GRAPH);
-        }
+        WebResource wr = default_graph ? getConfiguredInstance().resource(DEFAULT_GRAPH) : getConfiguredInstance().resource(UNSPECIFIED_GRAPH);
         LOG.debug(String.format("Mimetype: %s", mimetype));
         LOG.debug(String.format("URI: %s", wr.getURI()));
         try {
-            LOG.debug(String.format("String: %s", new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename))))));
             ClientResponse response = wr.type(mimetype)
                     .post(ClientResponse.class, new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename)))));
             String res = response.getEntity(String.class);
+            //LOG.debug(String.format("String: %s", new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename))))));
             LOG.debug(String.format("Response length: %d", response.getLength()));
             LOG.debug(String.format("Client Response Status: %d", response.getStatus()));
             LOG.debug(String.format("Client Response: %s", res));
