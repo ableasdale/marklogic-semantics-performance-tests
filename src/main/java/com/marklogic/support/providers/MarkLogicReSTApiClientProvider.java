@@ -28,8 +28,12 @@ public class MarkLogicReSTApiClientProvider {
     private static URI UNSPECIFIED_GRAPH = UriBuilder.fromUri(String.format("http://%s:%d/v1/graphs?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE)).build();
     private static URI LATEST_REST_APIS = UriBuilder.fromUri(String.format("http://%s:%d/LATEST/rest-apis", Configuration.HOST, 8002)).build();
 
+    // See: https://docs.marklogic.com/guide/semantics/loading#id_70682 for full list
+
     private static String TURTLE_MIMETYPE = "application/x-turtle";
     private static String NQUAD_MIMETYPE = "application/n-quads";
+    private static String NTRIPLES_MIMETYPE = "application/n-triples";
+    //text/plain
 
     private static Client client = null;
 
@@ -44,7 +48,7 @@ public class MarkLogicReSTApiClientProvider {
     public static ClientResponse createPostForClearingDatabase() {
         WebResource wr = getConfiguredInstance().resource(String.format("http://localhost:8002/manage/v2/forests/%s", Configuration.FOREST));
         ClientResponse response = wr.type("application/x-www-form-urlencoded").post(ClientResponse.class, "state=clear");
-        LOG.debug("Cleared Database :: Client Response Status: "+ response.getStatus());
+        LOG.debug("Cleared Database :: Client Response Status: " + response.getStatus());
         return response;
     }
 
@@ -77,25 +81,39 @@ public class MarkLogicReSTApiClientProvider {
     public static ClientResponse getTripleCountAsEval() {
         WebResource wr = getConfiguredInstance().resource(EVAL);
         ClientResponse response = wr.type("application/x-www-form-urlencoded").header("Accept", "multipart/mixed; boundary=BOUNDARY").post(ClientResponse.class, "sem:sparql(select (count(*) as ?total) where { ?s ?p ?o . })");
-        LOG.debug("Client Response Status: "+ response.getStatus());
+        LOG.debug("Client Response Status: " + response.getStatus());
         //response.getEntity().getContent();
-        LOG.debug("Client Response in full: "+response.getEntity(String.class));
+        LOG.debug("Client Response in full: " + response.getEntity(String.class));
         return response;
     }
 
-
-    public static ClientResponse createPost(String filename, String mimetype) {
-        WebResource wr = getConfiguredInstance().resource(UNSPECIFIED_GRAPH);
+    private static ClientResponse createPost(String filename, String mimetype, boolean default_graph) {
+        WebResource wr = null;
+        if (default_graph) {
+            wr = getConfiguredInstance().resource(DEFAULT_GRAPH);
+        } else {
+            wr = getConfiguredInstance().resource(UNSPECIFIED_GRAPH);
+        }
+        LOG.debug(String.format("Mimetype: %s", mimetype));
         LOG.debug(String.format("URI: %s", wr.getURI()));
         try {
+            LOG.debug(String.format("String: %s", new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename))))));
             ClientResponse response = wr.type(mimetype)
                     .post(ClientResponse.class, new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename)))));
+            String res = response.getEntity(String.class);
+            LOG.debug(String.format("Response length: %d", response.getLength()));
             LOG.debug(String.format("Client Response Status: %d", response.getStatus()));
+            LOG.debug(String.format("Client Response: %s", res));
             return response;
         } catch (IOException e) {
             LOG.error("Exception caught creating resource: ", e);
         }
         return null;
+
+    }
+
+    private static ClientResponse createPost(String filename, String mimetype) {
+        return createPost(filename, mimetype, false);
     }
 
     public static ClientResponse createPostForTurtle(String filename) {
@@ -104,6 +122,10 @@ public class MarkLogicReSTApiClientProvider {
 
     public static ClientResponse createPostForNQuads(String filename) {
         return createPost(filename, NQUAD_MIMETYPE);
+    }
+
+    public static ClientResponse createPostForNTriples(String filename) {
+        return createPost(filename, NTRIPLES_MIMETYPE, true);
     }
 
     /*
