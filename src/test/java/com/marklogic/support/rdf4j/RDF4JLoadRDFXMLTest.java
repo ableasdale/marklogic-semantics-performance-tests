@@ -11,24 +11,23 @@ import com.marklogic.support.Utils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
+import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import org.eclipse.rdf4j.repository.RepositoryException;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParseException;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 
 import java.io.IOException;
 
-import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("ignore")
+@Tag("rdfxml")
 @MarkLogicRDF4J
-@DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the Sesame Repository API")
+@DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the RDF4J API")
 class RDF4JLoadRDFXMLTest {
 
     @Benchmark
@@ -36,11 +35,12 @@ class RDF4JLoadRDFXMLTest {
     @DisplayName("Using the MarkLogic RDF4J API to load a 175KB RDF/XML file (countries.rdf)")
     public void testLoadingSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
-        assertTimeoutPreemptively(ofSeconds(2), () -> {
+        assertTimeoutPreemptively(ofSeconds(5), () -> {
             conn.add(Utils.getFileReader("rdfxml/countries.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(9330, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
     @Benchmark
@@ -48,11 +48,12 @@ class RDF4JLoadRDFXMLTest {
     @DisplayName("Using the MarkLogic RDF4J API to load a 189KB RDF/XML file (currencies.rdf)")
     public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
-        assertTimeoutPreemptively(ofSeconds(2), () -> {
+        assertTimeoutPreemptively(ofSeconds(5), () -> {
             conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(3231, SPARQLUtils.countAllTriples(conn));
         conn.close();
+        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 
     @Benchmark
@@ -65,20 +66,6 @@ class RDF4JLoadRDFXMLTest {
         });
         assertEquals(271369, SPARQLUtils.countAllTriples(conn));
         conn.close();
-    }
-
-
-    @Benchmark
-    @Disabled("file can't be parsed right now - need to figure out why...")
-    // -- XDMP-BASEURI (err:FOER0000): Undeclared base URI . See the MarkLogic server error log for further detail.
-    @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic Sesame API to load a 187.1MB RDF/XML file (geospecies.rdf)")
-    public void testLoadingLargeRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
-        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
-        assertTimeoutPreemptively(ofMillis(50000), () -> {
-            conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
-        });
-        assertEquals(0, SPARQLUtils.countAllTriples(conn));
-        conn.close();
+        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 }

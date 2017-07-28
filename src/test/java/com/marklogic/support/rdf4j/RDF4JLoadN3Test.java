@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 26/05/2017.
  */
 
-@Tag("ignore")
+@Tag("n3")
 @MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the RDF4J API")
 public class RDF4JLoadN3Test {

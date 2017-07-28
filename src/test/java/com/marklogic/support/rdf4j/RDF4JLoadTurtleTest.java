@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 28/05/2017.
  */
 
-@Tag("ignore")
+@Tag("turtle")
 @MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the RDF4J API")
 public class RDF4JLoadTurtleTest {
@@ -60,7 +60,6 @@ public class RDF4JLoadTurtleTest {
         conn.close();
     }
 
-    @Disabled
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 51MB Turtle file (history.ttl)")
@@ -71,7 +70,6 @@ public class RDF4JLoadTurtleTest {
         conn.close();
     }
 
-    @Disabled
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 130MB Turtle file (fulldump.ttl)")
