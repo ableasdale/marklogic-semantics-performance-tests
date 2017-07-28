@@ -4,6 +4,7 @@ package com.marklogic.support.rdf4j;
  * Created by ableasdale on 26/05/2017.
  */
 
+import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
@@ -36,7 +37,7 @@ class RDF4JLoadRDFXMLTest {
     public void testLoadingSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
-            conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
+            conn.add(Utils.getFileReader("rdfxml/countries.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(9330, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -48,7 +49,7 @@ class RDF4JLoadRDFXMLTest {
     public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
-            conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
+            conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(3231, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -60,7 +61,7 @@ class RDF4JLoadRDFXMLTest {
     public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(45), () -> {
-            conn.add(Utils.getFileReader("rdfxml/peel.rdf"), "", RDFFormat.RDFXML);
+            conn.add(Utils.getFileReader("rdfxml/peel.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(271369, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -75,7 +76,7 @@ class RDF4JLoadRDFXMLTest {
     public void testLoadingLargeRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofMillis(50000), () -> {
-            conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
+            conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(0, SPARQLUtils.countAllTriples(conn));
         conn.close();

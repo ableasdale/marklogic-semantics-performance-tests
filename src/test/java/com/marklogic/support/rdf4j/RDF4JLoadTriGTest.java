@@ -48,19 +48,6 @@ class RDF4JLoadTriGTest {
         conn.close();
     }
 
-    /* broken
-    @Benchmark
-    @RepeatedTest(2)
-    @DisplayName("Using the MarkLogic RDF4J API to load a 3MB TriG file (punto-enel-export-20170727-190637.trig)")
-    void testLoadingMedTriGFile() {
-        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
-        assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("trig/punto-enel-export-20170727-190637.trig"), "", RDFFormat.TRIG);
-        });
-        assertEquals(8900, SPARQLUtils.countAllTriples(conn));
-        conn.close();
-    } */
-
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 62.3MB TriG file (wp-monthy_all.trig)")
