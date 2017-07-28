@@ -45,4 +45,9 @@ public class Utils {
         return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
                 .withMimetype(RDFMimeTypes.NTRIPLES);
     }
+
+    public static FileHandle getFileHandleForN3File(String name) {
+        return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
+                .withMimetype(RDFMimeTypes.N3);
+    }
 }
