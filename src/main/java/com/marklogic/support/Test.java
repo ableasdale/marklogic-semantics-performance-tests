@@ -8,7 +8,8 @@ import org.eclipse.rdf4j.rio.RDFParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 /**
@@ -29,7 +30,7 @@ public class Test {
             MarkLogicRepository repo = new MarkLogicRepository(Configuration.HOST, Configuration.PORT, Configuration.USERNAME, Configuration.PASSWORD, Configuration.AUTH);
             repo.initialize();
             MarkLogicRepositoryConnection conn = repo.getConnection();
-           //HDT hdt = HDTManager.loadHDT("src/main/resources/wordnet-2013-03-20.hdt", null);
+            //HDT hdt = HDTManager.loadHDT("src/main/resources/wordnet-2013-03-20.hdt", null);
 
 //            IteratorTripleString it = hdt.search("", "", "");
 //            while(it.hasNext()) {

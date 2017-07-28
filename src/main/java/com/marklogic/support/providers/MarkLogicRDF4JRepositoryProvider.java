@@ -27,10 +27,6 @@ public class MarkLogicRDF4JRepositoryProvider {
         }
     }
 
-    private static class LazyHolder {
-        static final MarkLogicRDF4JRepositoryProvider INSTANCE = new MarkLogicRDF4JRepositoryProvider();
-    }
-
     private static MarkLogicRDF4JRepositoryProvider getInstance() {
         return LazyHolder.INSTANCE;
     }
@@ -48,6 +44,10 @@ public class MarkLogicRDF4JRepositoryProvider {
             LOG.error("Unable to create Sesame API MarkLogicRDF4JRepositoryProvider connection", e);
         }
         return null;
+    }
+
+    private static class LazyHolder {
+        static final MarkLogicRDF4JRepositoryProvider INSTANCE = new MarkLogicRDF4JRepositoryProvider();
     }
 
 }

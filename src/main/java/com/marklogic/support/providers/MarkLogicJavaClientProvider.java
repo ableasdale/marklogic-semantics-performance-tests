@@ -23,14 +23,16 @@ public class MarkLogicJavaClientProvider {
                 new DatabaseClientFactory.DigestAuthContext(Configuration.USERNAME, Configuration.PASSWORD));
     }
 
-    private static class LazyHolder {
-        static final MarkLogicJavaClientProvider INSTANCE = new MarkLogicJavaClientProvider();
-    }
-
     private static MarkLogicJavaClientProvider getInstance() {
         return LazyHolder.INSTANCE;
     }
 
-    public static DatabaseClient getClient() {return getInstance().client;}
+    public static DatabaseClient getClient() {
+        return getInstance().client;
+    }
+
+    private static class LazyHolder {
+        static final MarkLogicJavaClientProvider INSTANCE = new MarkLogicJavaClientProvider();
+    }
 
 }

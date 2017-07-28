@@ -33,7 +33,7 @@ public class Utils {
 
     public static FileHandle getFileHandleForTurtleFile(String name) {
         return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
-                        .withMimetype(RDFMimeTypes.TURTLE);
+                .withMimetype(RDFMimeTypes.TURTLE);
     }
 
     public static FileHandle getFileHandleForNQuadsFile(String name) {
