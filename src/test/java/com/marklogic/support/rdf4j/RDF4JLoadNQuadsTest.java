@@ -1,5 +1,6 @@
 package com.marklogic.support.rdf4j;
 
+import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
 import com.marklogic.support.SPARQLUtils;
 import com.marklogic.support.Utils;
@@ -26,10 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @Tag("nquads")
 @MarkLogicRDF4J
-@DisplayName("Benchmarking performance when loading N-Quads (.nq) files using the Sesame Repository API")
+@DisplayName("Benchmarking performance when loading N-Quads (.nq) files using the RDF4J API")
 class RDF4JLoadNQuadsTest {
-
-    //private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Benchmark
     @RepeatedTest(2)
@@ -37,7 +36,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingMediumNQuadsFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(20), () -> {
-            conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/sider-indications_raw.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(163774, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -50,7 +49,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingLargeNQuadsFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/sider-label_mapping.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/sider-label_mapping.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(665161, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -63,7 +62,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingtoDeleteFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/toDelete.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/toDelete.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(116291, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -76,7 +75,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingSampleOne() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/1_86286.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/1_86286.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(86286, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -89,7 +88,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingSampleTwo() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(60), () -> {
-            conn.add(Utils.getFileReader("nquads/2_12770.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/2_12770.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         conn.close();
         assertEquals(12770, MarkLogicReSTApiClientProvider.getTripleCount());
@@ -102,7 +101,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingSampleThree() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/3_54187.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/3_54187.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(54187, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -115,7 +114,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingSampleFour() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/4_138495.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/4_138495.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(138495, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -128,7 +127,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingSampleFive() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/5_63578.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/5_63578.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(63578, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -141,7 +140,7 @@ class RDF4JLoadNQuadsTest {
     void testLoadingSampleSix() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(80), () -> {
-            conn.add(Utils.getFileReader("nquads/6_125268.nq"), "", RDFFormat.NQUADS);
+            conn.add(Utils.getFileReader("nquads/6_125268.nq"), GraphManager.DEFAULT_GRAPH, RDFFormat.NQUADS);
         });
         assertEquals(125268, SPARQLUtils.countAllTriples(conn));
         conn.close();
