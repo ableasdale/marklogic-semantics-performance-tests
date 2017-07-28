@@ -112,7 +112,7 @@ public class MarkLogicReSTApiClientProvider {
     }
 
     public static ClientResponse createPostForTurtle(String filename) {
-        return createPost(filename, TURTLE_MIMETYPE);
+        return createPost(filename, TURTLE_MIMETYPE, true);
     }
 
     public static ClientResponse createPostForNQuads(String filename) {
