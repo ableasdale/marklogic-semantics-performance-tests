@@ -15,7 +15,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("nquads")
+@Tag("ignore")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading N-Quads (.nq) files using the Jena Client API")
 class JenaLoadNQuadsTest {

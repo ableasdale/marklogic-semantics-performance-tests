@@ -33,6 +33,8 @@ public class MarkLogicReSTApiClientProvider {
     private static String TURTLE_MIMETYPE = "application/x-turtle";
     private static String NQUAD_MIMETYPE = "application/n-quads";
     private static String NTRIPLES_MIMETYPE = "application/n-triples";
+    private static String N3_MIMETYPE = "text/n3";
+    private static String TRIG_MIMETYPE = "application/trig";
     //text/plain
 
     private static Client client = null;
@@ -119,8 +121,14 @@ public class MarkLogicReSTApiClientProvider {
         return createPost(filename, NQUAD_MIMETYPE);
     }
 
+    public static ClientResponse createPostForTrig(String filename) { return createPost(filename, TRIG_MIMETYPE, true); }
+
     public static ClientResponse createPostForNTriples(String filename) {
         return createPost(filename, NTRIPLES_MIMETYPE, true);
+    }
+
+    public static ClientResponse createPostForN3(String filename) {
+        return createPost(filename, N3_MIMETYPE, true);
     }
 
     /*
