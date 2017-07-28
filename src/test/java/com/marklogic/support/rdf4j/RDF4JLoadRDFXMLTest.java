@@ -33,7 +33,7 @@ class RDF4JLoadRDFXMLTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 175KB RDF/XML file (countries.rdf)")
-    public void testLoadingSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingSmallRDFXMLFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(5), () -> {
             conn.add(Utils.getFileReader("rdfxml/countries.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
@@ -46,7 +46,7 @@ class RDF4JLoadRDFXMLTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 189KB RDF/XML file (currencies.rdf)")
-    public void testLoadingAnotherSmallRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingAnotherSmallRDFXMLFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(5), () -> {
             conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
@@ -59,7 +59,7 @@ class RDF4JLoadRDFXMLTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 21.8MB RDF/XML file (peel.rdf)")
-    public void testLoadingMediumRDFXMLFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingMediumRDFXMLFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(45), () -> {
             conn.add(Utils.getFileReader("rdfxml/peel.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);

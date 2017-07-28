@@ -12,7 +12,6 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-
 @Tag("trig")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading TriG (.trig) files using the ReST API endpoint")
