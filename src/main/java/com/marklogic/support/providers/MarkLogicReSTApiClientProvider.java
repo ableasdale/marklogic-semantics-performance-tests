@@ -48,6 +48,10 @@ public class MarkLogicReSTApiClientProvider {
         return client;
     }
 
+    public static String createXQuerySemLoad(String filename, String type) {
+        return String.format("xquery=xquery version \"1.0-ml\"; \nimport module namespace sem = \"http://marklogic.com/semantics\" at \"/MarkLogic/semantics.xqy\";\nsem:rdf-load('%s/%s%s', \"%s\")", System.getProperty("user.dir"), Configuration.RESOURCES, filename, type);
+    }
+
     public static ClientResponse createPostForClearingDatabase() {
         WebResource wr = getConfiguredInstance().resource(String.format("http://localhost:8002/manage/v2/forests/%s", Configuration.FOREST));
         ClientResponse response = wr.type("application/x-www-form-urlencoded").post(ClientResponse.class, "state=clear");
@@ -83,10 +87,18 @@ public class MarkLogicReSTApiClientProvider {
     // TODO - not quite right!
     public static ClientResponse getTripleCountAsEval() {
         WebResource wr = getConfiguredInstance().resource(EVAL);
-        ClientResponse response = wr.type("application/x-www-form-urlencoded").header("Accept", "multipart/mixed; boundary=BOUNDARY").post(ClientResponse.class, "sem:sparql(select (count(*) as ?total) where { ?s ?p ?o . })");
+        ClientResponse response = wr.type("application/x-www-form-urlencoded").header("Accept", "multipart/mixed; boundary=BOUNDARY").post(ClientResponse.class, "xquery=sem:sparql(select (count(*) as ?total) where { ?s ?p ?o . })");
         LOG.debug("Client Response Status: " + response.getStatus());
         //response.getEntity().getContent();
         LOG.debug("Client Response in full: " + response.getEntity(String.class));
+        return response;
+    }
+
+    public static ClientResponse evalXQuery(String xquery) {
+        WebResource wr = getConfiguredInstance().resource(EVAL);
+        ClientResponse response = wr.type("application/x-www-form-urlencoded").header("Accept", "multipart/mixed; boundary=BOUNDARY").post(ClientResponse.class, xquery);
+        LOG.debug(String.format("Client Response Status: %d", response.getStatus()));
+        LOG.debug(String.format("Client Response in full: %s", response.getEntity(String.class)));
         return response;
     }
 

@@ -1,10 +1,13 @@
 package com.marklogic.support.extensions;
 
+import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by ableasdale on 28/05/2017.
@@ -25,11 +28,15 @@ public class MarkLogicExtension implements BeforeAllCallback, BeforeTestExecutio
     @Override
     public void afterAll(ExtensionContext context) throws Exception {
         LOG.info("MARKLOGIC: AFTER ALL :)");
+        LOG.info("■ MarkLogic XQuery (AFTER ALL TESTS) ■");
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
     }
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.info("MARKLOGIC: AFTER TEST :)");
+        LOG.info("■ MarkLogic XQuery (AFTER TEST) ■");
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
     }
 
     @Override

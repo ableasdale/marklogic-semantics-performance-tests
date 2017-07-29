@@ -24,7 +24,7 @@ public class JavaClientRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 175KB RDF/XML file (countries.rdf)")
     void testLoadingSmallRDFXMLFile() {
-        assertTimeoutPreemptively(ofSeconds(200), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(DEFAULT_GRAPH, getFileHandleForRdfXmlFile("rdfxml/countries.rdf")));
+        assertTimeoutPreemptively(ofSeconds(5), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(DEFAULT_GRAPH, getFileHandleForRdfXmlFile("rdfxml/countries.rdf")));
         assertEquals(9330, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
@@ -33,7 +33,7 @@ public class JavaClientRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 189KB RDF/XML file (currencies.rdf)")
     void testLoadingAnotherSmallRDFXMLFile() {
-        assertTimeoutPreemptively(ofSeconds(200), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(DEFAULT_GRAPH, getFileHandleForRdfXmlFile("rdfxml/currencies.rdf")));
+        assertTimeoutPreemptively(ofSeconds(5), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(DEFAULT_GRAPH, getFileHandleForRdfXmlFile("rdfxml/currencies.rdf")));
         assertEquals(3231, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
@@ -42,7 +42,7 @@ public class JavaClientRDFXMLTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 21.8MB RDF/XML file (peel.rdf)")
     void testLoadingMediumRDFXMLFile() {
-        assertTimeoutPreemptively(ofSeconds(200), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(DEFAULT_GRAPH, getFileHandleForRdfXmlFile("rdfxml/peel.rdf")));
+        assertTimeoutPreemptively(ofSeconds(40), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(DEFAULT_GRAPH, getFileHandleForRdfXmlFile("rdfxml/peel.rdf")));
         assertEquals(271369, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
