@@ -55,4 +55,9 @@ public class Utils {
         return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
                 .withMimetype(RDFMimeTypes.TRIG);
     }
+
+    public static FileHandle getFileHandleForRdfXmlFile(String name) {
+        return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
+                .withMimetype(RDFMimeTypes.RDFXML);
+    }
 }
