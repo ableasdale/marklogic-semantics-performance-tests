@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 @Tag("trig")
 @MarkLogicRDF4J
-@DisplayName("Benchmarking performance when loading TriG (.trig) files using the Sesame Repository API")
+@DisplayName("Benchmarking performance when loading TriG (.trig) files using the RDF4J API")
 class RDF4JLoadTriGTest {
 
     @Benchmark

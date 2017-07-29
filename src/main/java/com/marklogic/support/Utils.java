@@ -50,4 +50,9 @@ public class Utils {
         return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
                 .withMimetype(RDFMimeTypes.N3);
     }
+
+    public static FileHandle getFileHandleForTrigFile(String name) {
+        return new FileHandle(new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile()))
+                .withMimetype(RDFMimeTypes.TRIG);
+    }
 }
