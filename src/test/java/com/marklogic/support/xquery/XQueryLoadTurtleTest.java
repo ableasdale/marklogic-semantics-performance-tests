@@ -67,7 +67,7 @@ class XQueryLoadTurtleTest {
     @RepeatedTest(2)
     @DisplayName("Using XQuery sem:load to load a 130MB Turtle file (fulldump.ttl)")
     void testLoadingAnotherLargeTurtleFile() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(120), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("turtle/fulldump.ttl", "turtle")));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(60), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("turtle/fulldump.ttl", "turtle")));
         assertEquals("OK", res.getClientResponseStatus().getReasonPhrase());
         assertEquals(200, res.getStatus());
         assertEquals(204122, MarkLogicReSTApiClientProvider.getTripleCount());
