@@ -55,7 +55,7 @@ public class XQueryLoadNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using XQuery sem:load to load a 35.3MB N-Quads file (4_138495.nq)")
     void testLoadingSampleFour() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(35), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("nquads/4_138495.nq", "nquad")));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(40), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("nquads/4_138495.nq", "nquad")));
         assertEquals("OK", res.getClientResponseStatus().getReasonPhrase());
         assertEquals(200, res.getStatus());
         assertEquals(138495, MarkLogicReSTApiClientProvider.getTripleCount());
@@ -78,7 +78,7 @@ public class XQueryLoadNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using XQuery sem:load to load a 31.6MB N-Quads file (6_125268.nq)")
     void testLoadingSampleSix() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(20), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("nquads/6_125268.nq", "nquad")));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(35), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("nquads/6_125268.nq", "nquad")));
         assertEquals("OK", res.getClientResponseStatus().getReasonPhrase());
         assertEquals(200, res.getStatus());
         assertEquals(125268, MarkLogicReSTApiClientProvider.getTripleCount());
