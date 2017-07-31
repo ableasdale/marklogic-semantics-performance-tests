@@ -44,10 +44,10 @@ class XQueryLoadTriGTest {
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 62.3MB TriG file (wp-monthy_all.trig)")
     void testLoadingLargeTriGFile() {
-        ClientResponse res = assertTimeoutPreemptively(ofSeconds(300), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("trig/wp-monthy_all.trig", "trig")));
+        ClientResponse res = assertTimeoutPreemptively(ofSeconds(400), () -> MarkLogicReSTApiClientProvider.evalXQuery(createXQuerySemLoad("trig/wp-monthy_all.trig", "trig")));
         assertEquals("OK", res.getClientResponseStatus().getReasonPhrase());
         assertEquals(200, res.getStatus());
         assertEquals(668367, MarkLogicReSTApiClientProvider.getTripleCount());
-        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
+        assertEquals(107737, MarkLogicReSTApiClientProvider.getGraphCount());
     }
 }
