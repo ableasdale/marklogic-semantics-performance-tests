@@ -56,7 +56,7 @@ junitPlatform {
         }
         tags {
             //include 'turtle'
-            include 'n32'
+            include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle'
             // include 'fast'
             // exclude 'ignore'
         }

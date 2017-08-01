@@ -13,7 +13,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("n32")
+@Tag("n3")
 @MarkLogic
 @DisplayName("Benchmarking performance loading Notation3 (.n3) files using XQuery")
 class XQueryLoadN3Test {
