@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("ntriples")
 @MarkLogic
 @DisplayName("Benchmarking performance when loading N-Triples (.nt) files using XQuery")
-public class XQueryLoadNTriplesTest {
+class XQueryLoadNTriplesTest {
 
     @Benchmark
     @RepeatedTest(2)

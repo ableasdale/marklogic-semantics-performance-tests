@@ -23,24 +23,26 @@ public class MarkLogicExtension implements BeforeAllCallback, BeforeTestExecutio
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
+        LOG.info("■ MarkLogic XQuery (BEFORE ALL TESTS) ■");
     }
 
     @Override
     public void afterAll(ExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: AFTER ALL :)");
+        LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic XQuery (AFTER ALL TESTS) ■");
         assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
     }
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: AFTER TEST :)");
-        LOG.info("■ MarkLogic XQuery (AFTER TEST) ■");
+        LOG.debug(String.format("%s (AFTER TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
+        LOG.info(String.format(" ■■ MarkLogic XQuery (AFTER) ■ %s ■■", context.getDisplayName()));
         assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
     }
 
     @Override
     public void beforeTestExecution(ExtensionContext context) throws Exception {
-        LOG.info("MARKLOGIC: BEFORE TEST :)");
+        LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
+        LOG.info(String.format(" ■■ MarkLogic XQuery (BEFORE) ■ %s ■■", context.getDisplayName()));
     }
 }
