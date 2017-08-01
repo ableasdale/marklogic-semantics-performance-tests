@@ -10,6 +10,8 @@ import com.marklogic.support.annotations.Benchmark;
 import org.junit.jupiter.api.extension.*;
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 
+import java.util.concurrent.TimeUnit;
+
 import static java.lang.System.currentTimeMillis;
 import static java.util.Collections.singletonMap;
 import static org.junit.platform.commons.support.AnnotationSupport.isAnnotated;
@@ -36,7 +38,7 @@ public class BenchmarkExtension
     }
 
     private static void report(String unit, ExtensionContext context, long elapsedTime) {
-        String message = String.format("%s '%s' took %d ms.", unit, context.getDisplayName(), elapsedTime);
+        String message = String.format("%s '%s' took %d ms (%d seconds)", unit, context.getDisplayName(), elapsedTime, TimeUnit.MILLISECONDS.toSeconds(elapsedTime));
         context.publishReportEntry(singletonMap("Benchmark", message));
     }
 
