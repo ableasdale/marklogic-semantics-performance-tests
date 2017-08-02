@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("turtle")
 @MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the RDF4J API")
-public class RDF4JLoadTurtleTest {
+class RDF4JLoadTurtleTest {
 
     @Benchmark
     @RepeatedTest(2)

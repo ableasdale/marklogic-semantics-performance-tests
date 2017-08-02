@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("rdfxml")
 @MarkLogicJavaClient
 @DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the MarkLogic Java Client API")
-public class JavaClientRDFXMLTest {
+class JavaClientRDFXMLTest {
 
     @Benchmark
     @RepeatedTest(2)

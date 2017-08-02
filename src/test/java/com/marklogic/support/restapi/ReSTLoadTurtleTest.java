@@ -4,7 +4,9 @@ import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicReST;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import com.sun.jersey.api.client.ClientResponse;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("turtle")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the ReST API endpoints")
-public class ReSTLoadTurtleTest {
+class ReSTLoadTurtleTest {
 
     @Benchmark
     @RepeatedTest(2)

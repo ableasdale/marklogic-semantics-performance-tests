@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("nquads")
 @MarkLogic
 @DisplayName("Benchmarking performance when loading N-Quads (.nq) files using XQuery")
-public class XQueryLoadNQuadsTest {
+class XQueryLoadNQuadsTest {
 
     @Benchmark
     @RepeatedTest(2)

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("trig")
 @MarkLogicJavaClient
 @DisplayName("Benchmarking performance when loading TriG (.trig) files using the MarkLogic Java Client API")
-public class JavaClientTriGTest {
+class JavaClientTriGTest {
 
     @Benchmark
     @RepeatedTest(2)

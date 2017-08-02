@@ -28,12 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("n3")
 @MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the RDF4J API")
-public class RDF4JLoadN3Test {
+class RDF4JLoadN3Test {
 
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 39.5MB Notation 3 (N3) file (event-dump.n3)")
-    public void testLoadingMediumN3File() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingMediumN3File() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(50), () -> {
             conn.add(Utils.getFileReader("n3/event-dump.n3"), GraphManager.DEFAULT_GRAPH, RDFFormat.N3);
@@ -46,7 +46,7 @@ public class RDF4JLoadN3Test {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 57.8MB Notation 3 (N3) file (sec.n3)")
-    public void testLoadingLargeN3File() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingLargeN3File() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(130), () -> {
             conn.add(Utils.getFileReader("n3/sec.n3"), GraphManager.DEFAULT_GRAPH, RDFFormat.N3);

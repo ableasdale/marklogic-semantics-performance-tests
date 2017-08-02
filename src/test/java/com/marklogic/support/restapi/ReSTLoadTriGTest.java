@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("trig")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading TriG (.trig) files using the ReST API endpoint")
-public class ReSTLoadTriGTest {
+class ReSTLoadTriGTest {
 
     @Benchmark
     @RepeatedTest(2)

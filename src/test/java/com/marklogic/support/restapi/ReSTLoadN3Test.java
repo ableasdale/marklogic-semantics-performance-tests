@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("n3")
 @MarkLogicReST
 @DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the ReST API endpoint")
-public class ReSTLoadN3Test {
+class ReSTLoadN3Test {
 
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to load a 39.5MB Notation 3 (N3) file (event-dump.n3)")
-    public void testLoadingMediumN3File() {
+    void testLoadingMediumN3File() {
         ClientResponse res = assertTimeoutPreemptively(ofSeconds(150), () -> MarkLogicReSTApiClientProvider.createPostForN3("n3/event-dump.n3"));
         assertEquals("Created", res.getClientResponseStatus().getReasonPhrase());
         assertEquals(201, res.getStatus()); // returns 201 because it returns content in the response body
@@ -31,7 +31,7 @@ public class ReSTLoadN3Test {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the ReST API to to load a 57.8MB Notation 3 (N3) file (sec.n3)")
-    public void testLoadingLargeN3File() {
+    void testLoadingLargeN3File() {
         ClientResponse res = assertTimeoutPreemptively(ofSeconds(200), () -> MarkLogicReSTApiClientProvider.createPostForN3("n3/sec.n3"));
         assertEquals("Created", res.getClientResponseStatus().getReasonPhrase());
         assertEquals(201, res.getStatus()); // returns 201 because it returns content in the response body

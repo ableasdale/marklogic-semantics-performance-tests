@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Tag;
 
 import static com.marklogic.client.semantics.GraphManager.DEFAULT_GRAPH;
 import static com.marklogic.support.Utils.getFileHandleForN3File;
-import static com.marklogic.support.Utils.getFileHandleForNTriplesFile;
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
@@ -19,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("n3")
 @MarkLogicJavaClient
 @DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the MarkLogic Java Client API")
-public class JavaClientN3Test {
+class JavaClientN3Test {
 
     @Benchmark
     @RepeatedTest(2)

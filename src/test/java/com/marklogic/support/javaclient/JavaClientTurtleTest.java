@@ -21,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("turtle")
 @MarkLogicJavaClient
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the MarkLogic Java Client API")
-public class JavaClientTurtleTest {
+class JavaClientTurtleTest {
 
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 596Kb x-turtle file (charging-stations-export-20170530-095533.ttl)")
-    public void testLoadingSmallXTurtleFile() {
+    void testLoadingSmallXTurtleFile() {
         assertTimeoutPreemptively(ofSeconds(70), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(GraphManager.DEFAULT_GRAPH, getFileHandleForTurtleFile("turtle/charging-stations-export-20170530-095533.ttl")));
         assertEquals(8900, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
@@ -54,7 +54,7 @@ public class JavaClientTurtleTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 51MB Turtle file (history.ttl)")
-    public void testLoadingLargeTurtleFile() {
+    void testLoadingLargeTurtleFile() {
         assertTimeoutPreemptively(ofSeconds(150), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().write(GraphManager.DEFAULT_GRAPH, getFileHandleForTurtleFile("turtle/history.ttl")));
         assertEquals(391551, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());

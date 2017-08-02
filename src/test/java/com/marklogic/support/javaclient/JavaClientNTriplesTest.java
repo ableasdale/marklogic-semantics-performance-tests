@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 @Tag("ntriples")
 @MarkLogicJavaClient
 @DisplayName("Benchmarking performance when loading N-Triples (.nt) files using the MarkLogic Java Client API")
-public class JavaClientNTriplesTest {
+class JavaClientNTriplesTest {
 
     @Benchmark
     @RepeatedTest(2)

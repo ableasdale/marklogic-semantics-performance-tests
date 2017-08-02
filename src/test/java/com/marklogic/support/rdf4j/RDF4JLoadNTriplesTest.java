@@ -29,7 +29,7 @@ class RDF4JLoadNTriplesTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 506Kb N-Triples file (ron.nt)")
-    public void testLoadingSmallNtFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingSmallNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
 
         assertTimeoutPreemptively(ofSeconds(2), () -> {
@@ -43,7 +43,7 @@ class RDF4JLoadNTriplesTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 801Kb N-Triples file (rmn.nt)")
-    public void testLoadingAnotherSmallNtFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingAnotherSmallNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
             conn.add(Utils.getFileReader("nt/rmn.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
@@ -56,7 +56,7 @@ class RDF4JLoadNTriplesTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load an 11.8MB N-Triples file (dbpedia60k.nt)")
-    public void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/dbpedia60k.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
@@ -69,7 +69,7 @@ class RDF4JLoadNTriplesTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load an 18.2MB N-Triples file (ron-data.nt)")
-    public void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/ron-data.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
@@ -82,7 +82,7 @@ class RDF4JLoadNTriplesTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 18.2MB N-Triples file (rmn-data.nt)")
-    public void testLoadingAnotherMedNtFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingAnotherMedNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
             conn.add(Utils.getFileReader("nt/rmn-data.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
@@ -95,7 +95,7 @@ class RDF4JLoadNTriplesTest {
     @Benchmark
     @RepeatedTest(2)
     @DisplayName("Using the MarkLogic RDF4J API to load a 96.4MB N-Triples file (2013-02-14-panlex-dump.nt)")
-    public void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {
+    void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(50), () -> {
             conn.add(Utils.getFileReader("nt/2013-02-14-panlex-dump.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
