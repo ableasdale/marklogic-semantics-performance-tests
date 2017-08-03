@@ -46,11 +46,13 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Jena Client (BEFORE ALL TESTS) ■");
         assertTrue(SPARQLUtils.isDatabaseEmpty(DSG));
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 
     @Override
     public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic Jena Client (BEFORE) ■ %s ■■", context.getDisplayName()));
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 }

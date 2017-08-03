@@ -26,6 +26,7 @@ public class MarkLogicRDF4JExtension implements BeforeAllCallback, BeforeTestExe
         assertTrue(MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection().isOpen());
 //        assertTrue(MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection().isEmpty());
 //        assertTrue(MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection().size() == 0);
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 
     @Override
@@ -50,5 +51,6 @@ public class MarkLogicRDF4JExtension implements BeforeAllCallback, BeforeTestExe
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ RDF4J API Client (BEFORE) ■■ %s", context.getDisplayName()));
         //assertTrue(SPARQLUtils.isDatabaseEmpty(MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection()));
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 }

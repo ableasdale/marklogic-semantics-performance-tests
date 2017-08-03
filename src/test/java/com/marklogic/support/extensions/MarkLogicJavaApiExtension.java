@@ -36,6 +36,7 @@ public class MarkLogicJavaApiExtension implements BeforeAllCallback, BeforeTestE
     public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Java Client (BEFORE ALL TESTS) ■");
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
 
         /*
         DatabaseClient dc  = MarkLogicJavaClientProvider.getClient();
@@ -70,6 +71,7 @@ public class MarkLogicJavaApiExtension implements BeforeAllCallback, BeforeTestE
     public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic Java Client (BEFORE) ■ %s ■■", context.getDisplayName()));
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 
     // TODO - why can't i get this to log anything?!?  Is this recently broken in ML9?!?

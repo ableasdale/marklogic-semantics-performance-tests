@@ -37,11 +37,13 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (BEFORE ALL TESTS) ■");
         assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().getStatus());
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 
     @Override
     public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic ReST API Client (BEFORE) ■ %s ■■", context.getDisplayName()));
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 }

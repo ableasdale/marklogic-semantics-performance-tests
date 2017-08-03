@@ -24,6 +24,7 @@ public class MarkLogicExtension implements BeforeAllCallback, BeforeTestExecutio
     public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic XQuery (BEFORE ALL TESTS) ■");
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 
     @Override
@@ -44,5 +45,6 @@ public class MarkLogicExtension implements BeforeAllCallback, BeforeTestExecutio
     public void beforeTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic XQuery (BEFORE) ■ %s ■■", context.getDisplayName()));
+        assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 }
