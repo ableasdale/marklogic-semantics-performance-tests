@@ -1,6 +1,6 @@
 package com.marklogic.support.jena;
 
-import com.marklogic.support.SPARQLUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicJena;
 import com.marklogic.support.extensions.MarkLogicJenaExtension;

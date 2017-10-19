@@ -1,6 +1,6 @@
 package com.marklogic.support.javaclient;
 
-import com.marklogic.support.SPARQLUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicJavaClient;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 
 import static com.marklogic.client.semantics.GraphManager.DEFAULT_GRAPH;
-import static com.marklogic.support.Utils.getFileHandleForN3File;
+import static com.marklogic.support.util.FileUtils.getFileHandleForN3File;
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;

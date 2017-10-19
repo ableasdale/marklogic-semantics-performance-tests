@@ -2,6 +2,7 @@ package com.marklogic.support;
 
 import com.marklogic.semantics.rdf4j.MarkLogicRepository;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
+import com.marklogic.support.util.FileUtils;
 import org.eclipse.rdf4j.repository.RepositoryException;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParseException;
@@ -40,39 +41,39 @@ public class Test {
 //            }
 
 
-            // BAD conn.add(Utils.getFileReader("fulldump.ttl"), "", RDFFormat.TURTLE);
-            // BAD conn.add(Utils.getFileReader("images_en.ttl"), "", RDFFormat.TURTLE);
+            // BAD conn.add(FileUtils.getFileReader("fulldump.ttl"), "", RDFFormat.TURTLE);
+            // BAD conn.add(FileUtils.getFileReader("images_en.ttl"), "", RDFFormat.TURTLE);
 
             // N3
-            // GOOD conn.add(Utils.getFileReader("sec.n3"), "", RDFFormat.N3);
-            // BAD - TOOBIG conn.add(Utils.getFileReader("chemogenomics.n3"), "", RDFFormat.N3);
+            // GOOD conn.add(FileUtils.getFileReader("sec.n3"), "", RDFFormat.N3);
+            // BAD - TOOBIG conn.add(FileUtils.getFileReader("chemogenomics.n3"), "", RDFFormat.N3);
 
 
             // NQUADS
-            // GOOD conn.add(Utils.getFileReader("sider-indications_raw.nq"), "", RDFFormat.NQUADS);
-            // GOOD conn.add(Utils.getFileReader("sider-adverse_effects_raw.nq"), "", RDFFormat.NQUADS);
-            conn.add(Utils.getFileReader("sider-label_mapping.nq"), "", RDFFormat.NQUADS);
+            // GOOD conn.add(FileUtils.getFileReader("sider-indications_raw.nq"), "", RDFFormat.NQUADS);
+            // GOOD conn.add(FileUtils.getFileReader("sider-adverse_effects_raw.nq"), "", RDFFormat.NQUADS);
+            conn.add(FileUtils.getFileReader("sider-label_mapping.nq"), "", RDFFormat.NQUADS);
 
 
-            // BAD conn.add(Utils.getFileReader("625KGeologyMap_Dyke.nt"), "", RDFFormat.NTRIPLES);
+            // BAD conn.add(FileUtils.getFileReader("625KGeologyMap_Dyke.nt"), "", RDFFormat.NTRIPLES);
 
             // TURTLE
-            // GOOD conn.add(Utils.getFileReader("turtle/void.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("turtle/IVOAT.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("turtle/country-records.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("turtle/countries.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
-            // GOOD conn.add(Utils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
-            // GOOD - 984MB - takes ~10 minutes conn.add(Utils.getFileReader("turtle/names.ttl"), "", RDFFormat.TURTLE);
-            // BAD - TOOBIG conn.add(Utils.getFileReader("turtle/features.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(FileUtils.getFileReader("turtle/void.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(FileUtils.getFileReader("turtle/IVOAT.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(FileUtils.getFileReader("turtle/country-records.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(FileUtils.getFileReader("turtle/countries.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(FileUtils.getFileReader("turtle/history.ttl"), "", RDFFormat.TURTLE);
+            // GOOD conn.add(FileUtils.getFileReader("turtle/units.ttl"), "", RDFFormat.TURTLE);
+            // GOOD - 984MB - takes ~10 minutes conn.add(FileUtils.getFileReader("turtle/names.ttl"), "", RDFFormat.TURTLE);
+            // BAD - TOOBIG conn.add(FileUtils.getFileReader("turtle/features.ttl"), "", RDFFormat.TURTLE);
 
 
             // RDFXML
-            // GOOD conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
-            // GOOD conn.add(Utils.getFileReader("rdfxml/continents.rdf"), "", RDFFormat.RDFXML);
-            // GOOD conn.add(Utils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
-            // GOOD conn.add(Utils.getFileReader("rdfxml/capitals.rdf"), "", RDFFormat.RDFXML);
-            // BAD conn.add(Utils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(FileUtils.getFileReader("rdfxml/currencies.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(FileUtils.getFileReader("rdfxml/continents.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(FileUtils.getFileReader("rdfxml/countries.rdf"), "", RDFFormat.RDFXML);
+            // GOOD conn.add(FileUtils.getFileReader("rdfxml/capitals.rdf"), "", RDFFormat.RDFXML);
+            // BAD conn.add(FileUtils.getFileReader("rdfxml/geospecies.rdf"), "", RDFFormat.RDFXML);
 
 
         } catch (IOException e) {

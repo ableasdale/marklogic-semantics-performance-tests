@@ -1,8 +1,8 @@
 package com.marklogic.support.rdf4j;
 
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
-import com.marklogic.support.SPARQLUtils;
-import com.marklogic.support.Utils;
+import com.marklogic.support.util.FileUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
@@ -30,7 +30,7 @@ class RDF4JLoadTriGTest {
     void testLoadingSmallTriGFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(5), () -> {
-            conn.add(Utils.getFileReader("trig/charging-stations-export-20170530-095530.trig"), "", RDFFormat.TRIG);
+            conn.add(FileUtils.getFileReader("trig/charging-stations-export-20170530-095530.trig"), "", RDFFormat.TRIG);
         });
         assertEquals(8900, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -42,7 +42,7 @@ class RDF4JLoadTriGTest {
     void testLoadingAnotherSmallTriGFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
-            conn.add(Utils.getFileReader("trig/example.trig"), "", RDFFormat.TRIG);
+            conn.add(FileUtils.getFileReader("trig/example.trig"), "", RDFFormat.TRIG);
         });
         assertEquals(13671, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -54,7 +54,7 @@ class RDF4JLoadTriGTest {
     void testLoadingLargeTriGFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(150), () -> {
-            conn.add(Utils.getFileReader("trig/wp-monthy_all.trig"), "", RDFFormat.TRIG);
+            conn.add(FileUtils.getFileReader("trig/wp-monthy_all.trig"), "", RDFFormat.TRIG);
         });
         assertEquals(668367, SPARQLUtils.countAllTriples(conn));
         conn.close();

@@ -24,7 +24,6 @@ public class OkHttpDigestExample {
     public static void main(String[] args) {
 
 
-
         final DigestAuthenticator authenticator = new DigestAuthenticator(new Credentials("q", "q"));
 
         final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
@@ -46,7 +45,7 @@ public class OkHttpDigestExample {
                 LOG.info(responseHeaders.name(i) + ": " + responseHeaders.value(i));
             }
 
-            LOG.info("Response code: "+response.code());
+            LOG.info("Response code: " + response.code());
             LOG.info(response.body().string());
 
         } catch (IOException e) {

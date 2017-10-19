@@ -2,7 +2,7 @@ package com.marklogic.support.extensions;
 
 import com.marklogic.semantics.jena.MarkLogicDatasetGraph;
 import com.marklogic.semantics.jena.MarkLogicDatasetGraphFactory;
-import com.marklogic.support.SPARQLUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
 import org.junit.jupiter.api.extension.*;

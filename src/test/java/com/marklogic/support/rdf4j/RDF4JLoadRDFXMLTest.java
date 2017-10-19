@@ -6,8 +6,8 @@ package com.marklogic.support.rdf4j;
 
 import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
-import com.marklogic.support.SPARQLUtils;
-import com.marklogic.support.Utils;
+import com.marklogic.support.util.SPARQLUtils;
+import com.marklogic.support.util.FileUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
@@ -32,7 +32,7 @@ class RDF4JLoadRDFXMLTest {
     void testLoadingSmallRDFXMLFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(5), () -> {
-            conn.add(Utils.getFileReader("rdfxml/countries.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
+            conn.add(FileUtils.getFileReader("rdfxml/countries.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(9330, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -45,7 +45,7 @@ class RDF4JLoadRDFXMLTest {
     void testLoadingAnotherSmallRDFXMLFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(5), () -> {
-            conn.add(Utils.getFileReader("rdfxml/currencies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
+            conn.add(FileUtils.getFileReader("rdfxml/currencies.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(3231, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -58,7 +58,7 @@ class RDF4JLoadRDFXMLTest {
     void testLoadingMediumRDFXMLFile() {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(45), () -> {
-            conn.add(Utils.getFileReader("rdfxml/peel.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
+            conn.add(FileUtils.getFileReader("rdfxml/peel.rdf"), GraphManager.DEFAULT_GRAPH, RDFFormat.RDFXML);
         });
         assertEquals(271369, SPARQLUtils.countAllTriples(conn));
         conn.close();

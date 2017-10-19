@@ -2,8 +2,8 @@ package com.marklogic.support.rdf4j;
 
 import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
-import com.marklogic.support.SPARQLUtils;
-import com.marklogic.support.Utils;
+import com.marklogic.support.util.FileUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
@@ -36,7 +36,7 @@ class RDF4JLoadN3Test {
     void testLoadingMediumN3File() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(50), () -> {
-            conn.add(Utils.getFileReader("n3/event-dump.n3"), GraphManager.DEFAULT_GRAPH, RDFFormat.N3);
+            conn.add(FileUtils.getFileReader("n3/event-dump.n3"), GraphManager.DEFAULT_GRAPH, RDFFormat.N3);
         });
         assertEquals(682466, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -49,7 +49,7 @@ class RDF4JLoadN3Test {
     void testLoadingLargeN3File() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(130), () -> {
-            conn.add(Utils.getFileReader("n3/sec.n3"), GraphManager.DEFAULT_GRAPH, RDFFormat.N3);
+            conn.add(FileUtils.getFileReader("n3/sec.n3"), GraphManager.DEFAULT_GRAPH, RDFFormat.N3);
         });
         assertEquals(1813135, SPARQLUtils.countAllTriples(conn));
         conn.close();

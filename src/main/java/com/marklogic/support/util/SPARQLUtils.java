@@ -1,4 +1,4 @@
-package com.marklogic.support;
+package com.marklogic.support.util;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.io.StringHandle;
@@ -26,7 +26,8 @@ import org.eclipse.rdf4j.repository.RepositoryException;
  */
 public class SPARQLUtils {
 
-    // private static final String SELECT_ALL_SHORT = "select count(*) where { ?s ?p ?o . }";
+    //public static final String SELECT_ALL_SHORT = "select count(*) where { ?s ?p ?o }";
+    public static final String SELECT_COUNT = "select (count(?s) as ?total) where { ?s ?p ?o . }";
     private static final String SELECT_ALL = "select (count(*) as ?total) where { ?s ?p ?o . }";
     private static final String CLEAR_ALL = "CLEAR ALL";
     private static final String GRAPH_QUERY = "select (count(?g) as ?count) { graph ?g {} }";

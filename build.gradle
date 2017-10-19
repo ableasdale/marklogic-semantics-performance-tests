@@ -60,7 +60,7 @@ junitPlatform {
         }
         tags {
             include 'rdfxml2'
-            // include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle'
+            // include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle', 'jena'
             // include 'fast'
             // exclude 'ignore'
         }

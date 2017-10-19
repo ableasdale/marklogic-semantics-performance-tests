@@ -1,8 +1,7 @@
-package com.marklogic.support;
+package com.marklogic.support.util;
 
 import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.semantics.RDFMimeTypes;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +14,7 @@ import java.lang.invoke.MethodHandles;
 /**
  * Created by ableasdale on 24/05/2017.
  */
-public class Utils {
+public class FileUtils {
 
     private static Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -23,7 +22,7 @@ public class Utils {
         try {
             File f = new File(MethodHandles.lookup().lookupClass().getClassLoader().getResource(name).getFile());
             FileReader fr = new FileReader(f);
-            LOG.info(String.format("File name: %s | File length: %s", f.getName(), FileUtils.byteCountToDisplaySize(f.length())));
+            LOG.info(String.format("File name: %s | File length: %s", f.getName(), org.apache.commons.io.FileUtils.byteCountToDisplaySize(f.length())));
             return fr;
         } catch (FileNotFoundException e) {
             LOG.error(String.format("Unable to open file %s", name), e);

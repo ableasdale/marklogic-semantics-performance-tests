@@ -1,7 +1,7 @@
 package com.marklogic.support.javaclient;
 
 import com.marklogic.client.semantics.GraphManager;
-import com.marklogic.support.SPARQLUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicJavaClient;
 import com.marklogic.support.providers.MarkLogicJavaClientProvider;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 
-import static com.marklogic.support.Utils.getFileHandleForTurtleFile;
+import static com.marklogic.support.util.FileUtils.getFileHandleForTurtleFile;
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;

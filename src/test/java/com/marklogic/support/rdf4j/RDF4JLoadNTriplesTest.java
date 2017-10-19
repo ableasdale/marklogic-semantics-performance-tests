@@ -2,8 +2,8 @@ package com.marklogic.support.rdf4j;
 
 import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
-import com.marklogic.support.SPARQLUtils;
-import com.marklogic.support.Utils;
+import com.marklogic.support.util.FileUtils;
+import com.marklogic.support.util.SPARQLUtils;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicRDF4J;
 import com.marklogic.support.providers.MarkLogicRDF4JRepositoryProvider;
@@ -33,7 +33,7 @@ class RDF4JLoadNTriplesTest {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
 
         assertTimeoutPreemptively(ofSeconds(2), () -> {
-            conn.add(Utils.getFileReader("nt/ron.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
+            conn.add(FileUtils.getFileReader("nt/ron.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
         });
         assertEquals(3348, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -46,7 +46,7 @@ class RDF4JLoadNTriplesTest {
     void testLoadingAnotherSmallNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(2), () -> {
-            conn.add(Utils.getFileReader("nt/rmn.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
+            conn.add(FileUtils.getFileReader("nt/rmn.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
         });
         assertEquals(5069, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -59,7 +59,7 @@ class RDF4JLoadNTriplesTest {
     void testLoadingMediumNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
-            conn.add(Utils.getFileReader("nt/dbpedia60k.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
+            conn.add(FileUtils.getFileReader("nt/dbpedia60k.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
         });
         assertEquals(58512, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -72,7 +72,7 @@ class RDF4JLoadNTriplesTest {
     void testLoadingMedNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
-            conn.add(Utils.getFileReader("nt/ron-data.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
+            conn.add(FileUtils.getFileReader("nt/ron-data.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
         });
         assertEquals(109672, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -85,7 +85,7 @@ class RDF4JLoadNTriplesTest {
     void testLoadingAnotherMedNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(10), () -> {
-            conn.add(Utils.getFileReader("nt/rmn-data.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
+            conn.add(FileUtils.getFileReader("nt/rmn-data.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
         });
         assertEquals(113904, SPARQLUtils.countAllTriples(conn));
         conn.close();
@@ -98,7 +98,7 @@ class RDF4JLoadNTriplesTest {
     void testLoadingLargeNtFile() throws RepositoryException, IOException, RDFParseException {
         MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
         assertTimeoutPreemptively(ofSeconds(50), () -> {
-            conn.add(Utils.getFileReader("nt/2013-02-14-panlex-dump.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
+            conn.add(FileUtils.getFileReader("nt/2013-02-14-panlex-dump.nt"), GraphManager.DEFAULT_GRAPH, RDFFormat.NTRIPLES);
         });
         assertEquals(746399, SPARQLUtils.countAllTriples(conn));
         conn.close();

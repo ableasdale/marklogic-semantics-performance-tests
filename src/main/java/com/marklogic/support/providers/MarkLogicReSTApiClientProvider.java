@@ -6,6 +6,7 @@ import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.Credentials;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 import com.marklogic.support.Configuration;
+import com.marklogic.support.util.SPARQLUtils;
 import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ public class MarkLogicReSTApiClientProvider {
             .build();
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    private static final String SPARQL_QUERY = String.format("http://%s:%d/v1/graphs/sparql?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
+    private static final String SPARQL_ENDPOINT = String.format("http://%s:%d/v1/graphs/sparql?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
     private static final String EVAL = String.format("http://%s:%d/v1/eval?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
 
     // See: https://docs.marklogic.com/guide/semantics/loading#id_70682 for full list
@@ -43,6 +44,7 @@ public class MarkLogicReSTApiClientProvider {
     private static final String UNSPECIFIED_GRAPH = String.format("http://%s:%d/v1/graphs?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
     private static final String LATEST_REST_APIS = String.format("http://%s:%d/LATEST/rest-apis", Configuration.HOST, 8002);
 
+    private static final String URLENCODED_FORM_MIMETYPE = "application/x-www-form-urlencoded";
     private static final String TURTLE_MIMETYPE = "application/x-turtle";
     private static final String NQUAD_MIMETYPE = "application/n-quads";
     private static final String NTRIPLES_MIMETYPE = "application/n-triples";
@@ -51,7 +53,6 @@ public class MarkLogicReSTApiClientProvider {
     private static final String TRIG_MIMETYPE = "application/trig";
     private static final String RDFXML_MIMETYPE = "application/rdf+xml";
 
-
     public static String createXQuerySemLoad(String filename, String type) {
         return String.format("xquery=xquery version \"1.0-ml\"; \nimport module namespace sem = \"http://marklogic.com/semantics\" at \"/MarkLogic/semantics.xqy\";\nsem:rdf-load('%s/%s%s', \"%s\")", System.getProperty("user.dir"), Configuration.RESOURCES, filename, type);
     }
@@ -59,11 +60,11 @@ public class MarkLogicReSTApiClientProvider {
     public static Response createPostForClearingDatabase() {
         Request request = new Request.Builder()
                 .url(String.format("http://localhost:8002/manage/v2/forests/%s", Configuration.FOREST))
-                .post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), "state=clear"))
+                .post(RequestBody.create(MediaType.parse(URLENCODED_FORM_MIMETYPE), "state=clear"))
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            LOG.debug("Cleared Database :: Client Response Status: " + response.code());
+            LOG.debug(String.format("Cleared Database :: Client Response Status: %d", response.code()));
             return response;
         } catch (IOException e) {
             LOG.error("Exception caught creating resource: ", e);
@@ -94,11 +95,10 @@ public class MarkLogicReSTApiClientProvider {
 
     public static int getTripleCount() {
         Request request = new Request.Builder()
-                .url(SPARQL_QUERY)
+                .url(SPARQL_ENDPOINT)
                 .header("Accept", "text/csv")
-                .post(RequestBody.create(MediaType.parse("application/sparql-query"), "select (count(*) as ?total) where { ?s ?p ?o . }"))
+                .post(RequestBody.create(MediaType.parse("application/sparql-query"), SPARQLUtils.SELECT_COUNT))
                 .build();
-        // LOG.info(SPARQL_QUERY.toASCIIString());
         try {
             Response response = client.newCall(request).execute();
 
@@ -115,7 +115,7 @@ public class MarkLogicReSTApiClientProvider {
 
     public static int getGraphCount() {
         Request request = new Request.Builder()
-                .url(SPARQL_QUERY)
+                .url(SPARQL_ENDPOINT)
                 .header("Accept", "text/csv")
                 .post(RequestBody.create(MediaType.parse("application/sparql-query"), "select (count(?g) as ?count) { graph ?g {} }"))
                 .build();
@@ -161,7 +161,7 @@ public class MarkLogicReSTApiClientProvider {
         Request request = new Request.Builder()
                 .url(EVAL)
                 .header("Accept", "multipart/mixed; boundary=BOUNDARY")
-                .post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), xquery))
+                .post(RequestBody.create(MediaType.parse(URLENCODED_FORM_MIMETYPE), xquery))
                 .build();
 
         try {
@@ -184,12 +184,8 @@ public class MarkLogicReSTApiClientProvider {
         try {
             Request request = new Request.Builder()
                     .url(uri)
-                    .post(
-                            RequestBody.create(MediaType.parse(mimetype),
-                                    new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename))))))
+                    .post(RequestBody.create(MediaType.parse(mimetype), new String(Files.readAllBytes(Paths.get(String.format("%s%s", Configuration.RESOURCES, filename))))))
                     .build();
-
-
             Response response = client.newCall(request).execute();
 
             String res = response.body().string();
