@@ -22,14 +22,14 @@ public class MarkLogicJavaApiExtension implements BeforeAllCallback, BeforeTestE
     public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Java Client (AFTER ALL TESTS) ■");
-        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().code());
     }
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER TEST)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic Java Client (AFTER) ■ %s ■■", context.getDisplayName()));
-        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().code());
     }
 
     @Override

@@ -27,7 +27,7 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
     public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic Jena Client (AFTER ALL TESTS) ■");
-        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().code());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
         // assertTrue(DSG.size() == 0);
         //DSG.close();
         //DSG = null;
-        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().code());
     }
 
     @Override

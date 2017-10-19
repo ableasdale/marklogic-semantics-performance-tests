@@ -48,6 +48,7 @@ public class OkHttpDigestExample {
 
             LOG.info("Response code: "+response.code());
             LOG.info(response.body().string());
+
         } catch (IOException e) {
             e.printStackTrace();
         }

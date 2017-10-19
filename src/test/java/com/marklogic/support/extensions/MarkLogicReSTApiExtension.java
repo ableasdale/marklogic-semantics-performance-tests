@@ -20,23 +20,23 @@ public class MarkLogicReSTApiExtension implements BeforeAllCallback, BeforeTestE
     public void afterAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (AFTER ALL TESTS) ■");
-        assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().getStatus());
-        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().code());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().code());
     }
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (AFTER TEST) :: Clearing all triples", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info(String.format(" ■■ MarkLogic ReST API Client (AFTER) ■ %s ■■", context.getDisplayName()));
-        assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().getStatus());
-        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().code());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createPostForClearingDatabase().code());
     }
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
         LOG.debug(String.format("%s (BEFORE ALL TESTS)", MethodHandles.lookup().lookupClass().getSimpleName()));
         LOG.info("■ MarkLogic ReST API Client (BEFORE ALL TESTS) ■");
-        assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().getStatus());
+        assertEquals(200, MarkLogicReSTApiClientProvider.createGetForValidationCheck().code());
         assertEquals(0, MarkLogicReSTApiClientProvider.getTripleCount());
     }
 
