@@ -3,7 +3,6 @@ package com.marklogic.support.xquery;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogic;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
-import com.sun.jersey.api.client.ClientResponse;
 import okhttp3.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

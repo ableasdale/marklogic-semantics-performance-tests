@@ -3,7 +3,6 @@ package com.marklogic.support.restapi;
 import com.marklogic.support.annotations.Benchmark;
 import com.marklogic.support.annotations.MarkLogicReST;
 import com.marklogic.support.providers.MarkLogicReSTApiClientProvider;
-
 import okhttp3.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

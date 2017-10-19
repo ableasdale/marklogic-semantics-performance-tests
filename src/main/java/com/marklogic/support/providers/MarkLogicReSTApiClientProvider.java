@@ -10,10 +10,8 @@ import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -25,10 +23,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class MarkLogicReSTApiClientProvider {
 
-    static final DigestAuthenticator authenticator = new DigestAuthenticator(new Credentials(Configuration.USERNAME, Configuration.PASSWORD));
-    static final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
+    private static final DigestAuthenticator authenticator = new DigestAuthenticator(new Credentials(Configuration.USERNAME, Configuration.PASSWORD));
+    private static final Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<>();
 
-    static final OkHttpClient client = new OkHttpClient.Builder()
+    private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(90, TimeUnit.MINUTES)
             .writeTimeout(90, TimeUnit.MINUTES)
             .readTimeout(90, TimeUnit.MINUTES)
@@ -37,20 +35,21 @@ public class MarkLogicReSTApiClientProvider {
             .build();
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    private static URI SPARQL_QUERY = UriBuilder.fromUri(String.format("http://%s:%d/v1/graphs/sparql?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE)).build();
-    private static URI EVAL = UriBuilder.fromUri(String.format("http://%s:%d/v1/eval?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE)).build();
+    private static final String SPARQL_QUERY = String.format("http://%s:%d/v1/graphs/sparql?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
+    private static final String EVAL = String.format("http://%s:%d/v1/eval?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
 
     // See: https://docs.marklogic.com/guide/semantics/loading#id_70682 for full list
-    private static URI DEFAULT_GRAPH = UriBuilder.fromUri(String.format("http://%s:%d/v1/graphs?default&database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE)).build();
-    private static URI UNSPECIFIED_GRAPH = UriBuilder.fromUri(String.format("http://%s:%d/v1/graphs?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE)).build();
-    private static URI LATEST_REST_APIS = UriBuilder.fromUri(String.format("http://%s:%d/LATEST/rest-apis", Configuration.HOST, 8002)).build();
-    private static String TURTLE_MIMETYPE = "application/x-turtle";
-    private static String NQUAD_MIMETYPE = "application/n-quads";
-    private static String NTRIPLES_MIMETYPE = "application/n-triples";
+    private static final String DEFAULT_GRAPH = String.format("http://%s:%d/v1/graphs?default&database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
+    private static final String UNSPECIFIED_GRAPH = String.format("http://%s:%d/v1/graphs?database=%s", Configuration.HOST, Configuration.PORT, Configuration.DATABASE);
+    private static final String LATEST_REST_APIS = String.format("http://%s:%d/LATEST/rest-apis", Configuration.HOST, 8002);
+
+    private static final String TURTLE_MIMETYPE = "application/x-turtle";
+    private static final String NQUAD_MIMETYPE = "application/n-quads";
+    private static final String NTRIPLES_MIMETYPE = "application/n-triples";
     //text/plain
-    private static String N3_MIMETYPE = "text/n3";
-    private static String TRIG_MIMETYPE = "application/trig";
-    private static String RDFXML_MIMETYPE = "application/rdf+xml";
+    private static final String N3_MIMETYPE = "text/n3";
+    private static final String TRIG_MIMETYPE = "application/trig";
+    private static final String RDFXML_MIMETYPE = "application/rdf+xml";
 
 
     public static String createXQuerySemLoad(String filename, String type) {
@@ -75,7 +74,7 @@ public class MarkLogicReSTApiClientProvider {
 
     public static Response createGetForValidationCheck() {
         Request request = new Request.Builder()
-                .url(LATEST_REST_APIS.toASCIIString())
+                .url(LATEST_REST_APIS)
                 .get()
                 .build();
         try {
@@ -95,7 +94,7 @@ public class MarkLogicReSTApiClientProvider {
 
     public static int getTripleCount() {
         Request request = new Request.Builder()
-                .url(SPARQL_QUERY.toASCIIString())
+                .url(SPARQL_QUERY)
                 .header("Accept", "text/csv")
                 .post(RequestBody.create(MediaType.parse("application/sparql-query"), "select (count(*) as ?total) where { ?s ?p ?o . }"))
                 .build();
@@ -116,7 +115,7 @@ public class MarkLogicReSTApiClientProvider {
 
     public static int getGraphCount() {
         Request request = new Request.Builder()
-                .url(SPARQL_QUERY.toASCIIString())
+                .url(SPARQL_QUERY)
                 .header("Accept", "text/csv")
                 .post(RequestBody.create(MediaType.parse("application/sparql-query"), "select (count(?g) as ?count) { graph ?g {} }"))
                 .build();
@@ -160,7 +159,7 @@ public class MarkLogicReSTApiClientProvider {
     public static Response evalXQuery(String xquery) {
 
         Request request = new Request.Builder()
-                .url(EVAL.toASCIIString())
+                .url(EVAL)
                 .header("Accept", "multipart/mixed; boundary=BOUNDARY")
                 .post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), xquery))
                 .build();
@@ -177,7 +176,7 @@ public class MarkLogicReSTApiClientProvider {
     }
 
     private static Response createPost(String filename, String mimetype, boolean default_graph) {
-        String uri = default_graph ? DEFAULT_GRAPH.toASCIIString() : UNSPECIFIED_GRAPH.toASCIIString();
+        String uri = default_graph ? DEFAULT_GRAPH : UNSPECIFIED_GRAPH;
 
         LOG.debug(String.format("Mimetype: %s", mimetype));
         LOG.debug(String.format("URI: %s", uri));
