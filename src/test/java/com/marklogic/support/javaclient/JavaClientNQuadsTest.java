@@ -23,7 +23,7 @@ class JavaClientNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 20.5MB N-Quads file (1_86286.nq)")
     void testLoadingSampleOne() {
-        assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/1_86286.nq")));
+        assertTimeoutPreemptively(ofSeconds(190), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/1_86286.nq")));
         assertEquals(86286, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(12003, MarkLogicReSTApiClientProvider.getGraphCount());
     }
@@ -43,7 +43,7 @@ class JavaClientNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 13.9MB N-Quads file (3_54187.nq)")
     void testLoadingSampleThree() {
-        assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/3_54187.nq")));
+        assertTimeoutPreemptively(ofSeconds(85), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/3_54187.nq")));
         assertEquals(54187, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(12157, MarkLogicReSTApiClientProvider.getGraphCount());
     }
@@ -52,7 +52,7 @@ class JavaClientNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 35.3MB N-Quads file (4_138495.nq)")
     void testLoadingSampleFour() {
-        assertTimeoutPreemptively(ofSeconds(40), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/4_138495.nq")));
+        assertTimeoutPreemptively(ofSeconds(400), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/4_138495.nq")));
         assertEquals(138495, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(25995, MarkLogicReSTApiClientProvider.getGraphCount());
     }
@@ -61,7 +61,7 @@ class JavaClientNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 16MB N-Quads file (5_63578.nq)")
     void testLoadingSampleFive() {
-        assertTimeoutPreemptively(ofSeconds(30), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/5_63578.nq")));
+        assertTimeoutPreemptively(ofSeconds(120), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/5_63578.nq")));
         assertEquals(63578, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(12323, MarkLogicReSTApiClientProvider.getGraphCount());
     }
@@ -70,7 +70,7 @@ class JavaClientNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Java Client API to load a 31.6MB N-Quads file (6_125268.nq)")
     void testLoadingSampleSix() {
-        assertTimeoutPreemptively(ofSeconds(40), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/6_125268.nq")));
+        assertTimeoutPreemptively(ofSeconds(400), () -> MarkLogicJavaClientProvider.getClient().newGraphManager().mergeGraphs(getFileHandleForNQuadsFile("nquads/6_125268.nq")));
         assertEquals(125268, SPARQLUtils.countAllTriples(MarkLogicJavaClientProvider.getClient()));
         assertEquals(24263, MarkLogicReSTApiClientProvider.getGraphCount());
     }

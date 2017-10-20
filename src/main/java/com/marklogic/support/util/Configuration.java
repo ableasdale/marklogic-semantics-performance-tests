@@ -1,4 +1,4 @@
-package com.marklogic.support;
+package com.marklogic.support.util;
 
 /**
  * Created by ableasdale on 24/05/2017.

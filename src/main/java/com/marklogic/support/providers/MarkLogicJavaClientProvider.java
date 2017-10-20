@@ -2,7 +2,7 @@ package com.marklogic.support.providers;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
-import com.marklogic.support.Configuration;
+import com.marklogic.support.util.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

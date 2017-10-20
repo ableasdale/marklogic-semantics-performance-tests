@@ -24,7 +24,7 @@ class JenaLoadNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 20.5MB N-Quads file (1_86286.nq)")
     void testLoadingSampleOne() {
-        assertTimeoutPreemptively(ofSeconds(120), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/1_86286.nq", Lang.NQUADS));
+        assertTimeoutPreemptively(ofSeconds(150), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/1_86286.nq", Lang.NQUADS));
         assertEquals(86286, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
         assertEquals(86286, MarkLogicReSTApiClientProvider.getTripleCount());
         assertEquals(12003, MarkLogicReSTApiClientProvider.getGraphCount());
@@ -35,7 +35,7 @@ class JenaLoadNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 3.3MB N-Quads file (2_12770.nq)")
     void testLoadingSampleTwo() {
-        assertTimeoutPreemptively(ofSeconds(25), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/2_12770.nq", Lang.NQUADS));
+        assertTimeoutPreemptively(ofSeconds(30), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/2_12770.nq", Lang.NQUADS));
         assertEquals(12770, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
         assertEquals(12770, MarkLogicReSTApiClientProvider.getTripleCount());
         assertEquals(2905, MarkLogicReSTApiClientProvider.getGraphCount());
@@ -45,7 +45,7 @@ class JenaLoadNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 13.9MB N-Quads file (3_54187.nq)")
     void testLoadingSampleThree() {
-        assertTimeoutPreemptively(ofSeconds(120), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/3_54187.nq", Lang.NQUADS));
+        assertTimeoutPreemptively(ofSeconds(130), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/3_54187.nq", Lang.NQUADS));
         assertEquals(54187, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
         assertEquals(54187, MarkLogicReSTApiClientProvider.getTripleCount());
         assertEquals(12157, MarkLogicReSTApiClientProvider.getGraphCount());
@@ -55,7 +55,7 @@ class JenaLoadNQuadsTest {
     @RepeatedTest(2)
     @DisplayName("Using the Jena Client API to load a 35.3MB N-Quads file (4_138495.nq)")
     void testLoadingSampleFour() {
-        assertTimeoutPreemptively(ofSeconds(250), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/4_138495.nq", Lang.NQUADS));
+        assertTimeoutPreemptively(ofSeconds(280), () -> RDFDataMgr.read(MarkLogicJenaExtension.DSG, "src/main/resources/nquads/4_138495.nq", Lang.NQUADS));
         assertEquals(138495, SPARQLUtils.countAllTriples(MarkLogicJenaExtension.DSG));
         assertEquals(138495, MarkLogicReSTApiClientProvider.getTripleCount());
         assertEquals(25995, MarkLogicReSTApiClientProvider.getGraphCount());

@@ -2,6 +2,7 @@ package com.marklogic.support;
 
 import com.marklogic.semantics.rdf4j.MarkLogicRepository;
 import com.marklogic.semantics.rdf4j.MarkLogicRepositoryConnection;
+import com.marklogic.support.util.Configuration;
 import com.marklogic.support.util.FileUtils;
 import org.eclipse.rdf4j.repository.RepositoryException;
 import org.eclipse.rdf4j.rio.RDFFormat;

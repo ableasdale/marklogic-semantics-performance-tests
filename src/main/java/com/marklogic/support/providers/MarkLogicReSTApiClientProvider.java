@@ -5,7 +5,7 @@ import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.Credentials;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
-import com.marklogic.support.Configuration;
+import com.marklogic.support.util.Configuration;
 import com.marklogic.support.util.SPARQLUtils;
 import okhttp3.*;
 import org.slf4j.Logger;

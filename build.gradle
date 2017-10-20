@@ -16,7 +16,6 @@ buildscript {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
         classpath 'com.kncept.junit5.reporter:junit-reporter:1.0.0'
     }
-
 }
 
 repositories {
@@ -59,7 +58,7 @@ junitPlatform {
             exclude 'junit-vintage'
         }
         tags {
-            include 'rdfxml2'
+            include 'jena2'
             // include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle', 'jena'
             // include 'fast'
             // exclude 'ignore'

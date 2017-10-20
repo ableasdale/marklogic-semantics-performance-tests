@@ -21,7 +21,7 @@ public class MarkLogicJenaExtension implements BeforeAllCallback, BeforeTestExec
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
     // TODO - should this be handled by a provider rather than referenced directly in tests?
-    public static MarkLogicDatasetGraph DSG = MarkLogicDatasetGraphFactory.createDatasetGraph(MarkLogicJavaClientProvider.getClient());
+    public static final MarkLogicDatasetGraph DSG = MarkLogicDatasetGraphFactory.createDatasetGraph(MarkLogicJavaClientProvider.getClient());
 
     @Override
     public void afterAll(ExtensionContext context) throws Exception {
