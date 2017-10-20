@@ -58,7 +58,7 @@ junitPlatform {
             exclude 'junit-vintage'
         }
         tags {
-            include 'jena2'
+            include 'jena'
             // include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle', 'jena'
             // include 'fast'
             // exclude 'ignore'

@@ -21,7 +21,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("rdfxml2")
+@Tag("rdfxml")
 @MarkLogicRDF4J
 @DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the RDF4J API")
 class RDF4JLoadRDFXMLTest {
