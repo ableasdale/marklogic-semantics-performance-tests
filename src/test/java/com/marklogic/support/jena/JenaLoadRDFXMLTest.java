@@ -16,7 +16,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("jena")
+@Tag("rdfxml")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading Resource Description Framework (.rdf) files using the Jena Client API")
 public class JenaLoadRDFXMLTest {

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
  * Created by ableasdale on 29/05/2017.
  */
 
-@Tag("jena")
+@Tag("turtle")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading Turtle (.ttl) files using the Jena Client API")
 class JenaLoadTurtleTest {

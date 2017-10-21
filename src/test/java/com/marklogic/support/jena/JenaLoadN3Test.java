@@ -20,7 +20,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("jena")
+@Tag("n3")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading Notation3 (.n3) files using the Jena Client API")
 public class JenaLoadN3Test {

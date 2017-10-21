@@ -1,5 +1,5 @@
 group 'marklogic-semantics-performance-tests'
-version '1.0-SNAPSHOT'
+version '1.0-PRE'
 
 apply plugin: 'idea'
 apply plugin: 'java'
@@ -58,8 +58,7 @@ junitPlatform {
             exclude 'junit-vintage'
         }
         tags {
-            include 'jena'
-            // include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle', 'jena'
+            include 'n3', 'nquads', 'ntriples', 'rdfxml', 'trig', 'turtle'
             // include 'fast'
             // exclude 'ignore'
         }

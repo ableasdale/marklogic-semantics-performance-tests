@@ -15,7 +15,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("jena")
+@Tag("ntriples")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading N-Triples (.nt) files using the Jena Client API")
 class JenaLoadNTriplesTest {

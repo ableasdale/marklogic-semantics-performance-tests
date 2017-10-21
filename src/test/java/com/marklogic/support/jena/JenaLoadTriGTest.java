@@ -21,7 +21,7 @@ import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-@Tag("jena")
+@Tag("trig")
 @MarkLogicJena
 @DisplayName("Benchmarking performance when loading TriG (.trig) files Jena Client API")
 public class JenaLoadTriGTest {
