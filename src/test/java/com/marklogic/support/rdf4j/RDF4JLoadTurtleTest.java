@@ -84,4 +84,15 @@ class RDF4JLoadTurtleTest {
         conn.close();
         assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
     }
+
+    @Benchmark
+    @RepeatedTest(2)
+    @DisplayName("Using the MarkLogic RDF4J API to load a 260MB Turtle file (big.ttl)")
+    void testLoadingAGargantuanTurtleFile() throws RepositoryException, IOException, RDFParseException {
+        MarkLogicRepositoryConnection conn = MarkLogicRDF4JRepositoryProvider.getMarkLogicRepositoryConnection();
+        assertTimeoutPreemptively(ofSeconds(95), () -> conn.add(FileUtils.getFileReader("turtle/big.ttl"), GraphManager.DEFAULT_GRAPH, RDFFormat.TURTLE));
+        assertEquals(204122, SPARQLUtils.countAllTriples(conn));
+        conn.close();
+        assertEquals(2, MarkLogicReSTApiClientProvider.getGraphCount());
+    }
 }
